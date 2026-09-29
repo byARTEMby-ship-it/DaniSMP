@@ -12,22 +12,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
-    --bg:#050711;
-    --bg2:#080b18;
-    --card:rgba(13,17,32,.78);
-
+    --bg:#050611;
+    --bg2:#090b19;
     --yellow:#ffd21c;
-    --yellow2:#ffea68;
-
-    --purple:#8b35ff;
-    --purple2:#b85cff;
-
-    --text:#fff;
-    --muted:#9ea4bd;
-
-    --border:rgba(255,255,255,.09);
+    --yellow2:#ffed69;
+    --purple:#812cff;
+    --purple2:#b84dff;
+    --white:#ffffff;
+    --muted:#aeb3c7;
 }
 
 *{
@@ -42,15 +35,60 @@ html{
 
 body{
     font-family:Inter,Arial,sans-serif;
-    color:var(--text);
-    background:
-        radial-gradient(circle at 50% -10%,rgba(123,40,255,.25),transparent 35%),
-        radial-gradient(circle at 90% 50%,rgba(255,207,20,.07),transparent 25%),
-        var(--bg);
+    background:#050611;
+    color:white;
     overflow-x:hidden;
 }
 
-/* ================= HEADER ================= */
+/* =========================
+   GLOBAL BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(126,40,255,.22),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 70%,
+            rgba(255,210,28,.07),
+            transparent 25%
+        );
+
+    pointer-events:none;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-4;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        );
+
+    background-size:60px 60px;
+    pointer-events:none;
+}
+
+/* =========================
+   HEADER
+========================= */
 
 header{
     position:fixed;
@@ -59,15 +97,15 @@ header{
     width:100%;
     z-index:100;
 
-    background:rgba(4,6,14,.72);
+    background:rgba(4,6,15,.78);
     backdrop-filter:blur(18px);
 
     border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 nav{
-    max-width:1250px;
     height:76px;
+    max-width:1250px;
     margin:auto;
 
     padding:0 25px;
@@ -78,9 +116,8 @@ nav{
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:9px;
+    color:white;
+    text-decoration:none;
 
     font-size:24px;
     font-weight:900;
@@ -88,86 +125,67 @@ nav{
 
 .logo-crown{
     color:var(--yellow);
-    font-size:27px;
-    filter:drop-shadow(0 0 10px rgba(255,210,28,.6));
+    margin-right:7px;
+
+    text-shadow:
+        0 0 12px rgba(255,210,28,.8);
 }
 
 .logo span{
-    background:linear-gradient(90deg,#fff,var(--yellow));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    color:var(--purple2);
 }
 
 .nav-links{
     display:flex;
-    align-items:center;
-    gap:34px;
+    gap:35px;
 }
 
 .nav-links a{
-    position:relative;
-
-    color:#bfc3d7;
+    color:#aeb2c4;
     text-decoration:none;
-    font-size:14px;
-    font-weight:500;
+
+    font-size:13px;
+    font-weight:600;
 
     transition:.25s;
 }
 
-.nav-links a:hover{
-    color:#fff;
-}
-
+.nav-links a:hover,
 .nav-links a.active{
     color:var(--yellow);
 }
 
-.nav-links a.active:after{
-    content:"";
-
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:-23px;
-
-    height:2px;
-
-    background:var(--yellow);
-    box-shadow:0 0 12px var(--yellow);
-}
-
 .discord{
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    padding:10px 19px;
-
-    border:1px solid var(--purple);
-    border-radius:12px;
-
-    color:#fff;
+    color:white;
     text-decoration:none;
 
-    font-weight:700;
-    font-size:14px;
+    border:1px solid var(--purple);
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    font-size:13px;
+    font-weight:800;
 
     transition:.25s;
 }
 
 .discord:hover{
-    background:rgba(139,53,255,.16);
-    box-shadow:0 0 25px rgba(139,53,255,.3);
+    background:rgba(129,44,255,.15);
+
+    box-shadow:
+        0 0 25px rgba(129,44,255,.4);
+
     transform:translateY(-2px);
 }
 
-/* ================= HERO ================= */
+/* =========================
+   HERO
+========================= */
 
 .hero{
-    min-height:760px;
-    height:100vh;
+    min-height:100vh;
 
     position:relative;
 
@@ -177,242 +195,310 @@ nav{
 
     text-align:center;
 
+    padding:
+        120px
+        20px
+        70px;
+
     overflow:hidden;
 
-    padding:100px 20px 60px;
-
     background:
+        radial-gradient(
+            ellipse at center,
+            rgba(104,32,220,.25),
+            transparent 50%
+        ),
         linear-gradient(
             180deg,
-            rgba(5,7,17,.25),
-            rgba(5,7,17,.8)
-        ),
-        radial-gradient(
-            circle at center,
-            rgba(125,42,255,.18),
-            transparent 45%
+            #08091a 0%,
+            #050611 100%
         );
 }
 
-.hero:before{
+/* Fake Minecraft scenery */
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+    left:-5%;
+    right:-5%;
+    bottom:-20px;
+
+    height:240px;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 25%,
+            #11152a 25%,
+            #11152a 55%,
+            transparent 55%
+        );
+
+    opacity:.5;
+
+    filter:blur(1px);
+}
+
+.hero::after{
     content:"";
 
     position:absolute;
     inset:0;
 
     background:
-        linear-gradient(
-            90deg,
-            rgba(5,7,17,.95),
-            transparent 35%,
-            transparent 65%,
-            rgba(5,7,17,.95)
+        radial-gradient(
+            circle at 18% 70%,
+            rgba(146,60,255,.25),
+            transparent 16%
+        ),
+        radial-gradient(
+            circle at 82% 65%,
+            rgba(255,210,28,.12),
+            transparent 18%
         );
 
     pointer-events:none;
 }
 
-.hero-grid{
-    position:absolute;
-    inset:0;
-
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-
-    background-size:60px 60px;
-
-    mask-image:linear-gradient(
-        to bottom,
-        black,
-        transparent 90%
-    );
-
-    opacity:.35;
-}
-
 .hero-content{
     position:relative;
-    z-index:2;
+    z-index:5;
 
-    max-width:850px;
+    max-width:900px;
 }
 
 .badge{
     display:inline-flex;
+
     align-items:center;
     gap:8px;
 
     padding:9px 18px;
 
-    border:1px solid rgba(139,53,255,.45);
     border-radius:30px;
 
-    background:rgba(20,12,40,.7);
+    background:
+        rgba(20,12,42,.85);
 
-    color:#ddd3ff;
+    border:1px solid
+        rgba(145,60,255,.5);
 
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:.7px;
+    color:#ddd5ef;
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:1px;
 
     box-shadow:
-        0 0 25px rgba(139,53,255,.12);
+        0 0 25px
+        rgba(129,44,255,.18);
 
     margin-bottom:27px;
 }
 
-.badge span{
-    font-size:17px;
-}
-
 .hero h1{
-    font-size:clamp(70px,12vw,145px);
-    line-height:.9;
+    font-size:
+        clamp(
+            70px,
+            12vw,
+            150px
+        );
+
+    line-height:.85;
 
     font-weight:900;
-    letter-spacing:-6px;
+
+    letter-spacing:-7px;
 
     background:
         linear-gradient(
-            100deg,
-            #ffe342 0%,
+            105deg,
+            #ffd42b 0%,
             #fff 35%,
-            #a43cff 72%,
-            #7120d9 100%
+            #a842ff 70%,
+            #7024d7 100%
         );
 
     -webkit-background-clip:text;
     background-clip:text;
+
     color:transparent;
 
     filter:
-        drop-shadow(0 0 25px rgba(255,210,28,.16))
-        drop-shadow(0 0 40px rgba(139,53,255,.2));
+        drop-shadow(
+            0 0 25px
+            rgba(255,210,28,.15)
+        )
+        drop-shadow(
+            0 0 45px
+            rgba(129,44,255,.3)
+        );
 
-    animation:titleGlow 4s ease-in-out infinite;
+    animation:logoGlow 4s infinite ease-in-out;
 }
 
-@keyframes titleGlow{
+@keyframes logoGlow{
+
     0%,100%{
         filter:
-            drop-shadow(0 0 20px rgba(255,210,28,.12))
-            drop-shadow(0 0 35px rgba(139,53,255,.18));
+            drop-shadow(
+                0 0 22px
+                rgba(255,210,28,.15)
+            )
+            drop-shadow(
+                0 0 40px
+                rgba(129,44,255,.25)
+            );
     }
 
     50%{
         filter:
-            drop-shadow(0 0 30px rgba(255,210,28,.3))
-            drop-shadow(0 0 55px rgba(139,53,255,.3));
+            drop-shadow(
+                0 0 35px
+                rgba(255,210,28,.3)
+            )
+            drop-shadow(
+                0 0 65px
+                rgba(129,44,255,.4)
+            );
     }
 }
 
-.subtitle{
-    margin-top:20px;
+.tagline{
+    margin-top:22px;
 
-    color:#ddd8e8;
+    color:#e8d8f4;
 
-    font-size:11px;
-    font-weight:800;
+    font-size:10px;
+
+    font-weight:900;
+
     letter-spacing:5px;
 }
 
 .hero p{
-    max-width:600px;
+    max-width:650px;
 
-    margin:25px auto;
+    margin:
+        25px
+        auto
+        30px;
 
-    color:#bfc3d7;
+    color:#c3c7d7;
 
-    font-size:16px;
+    font-size:15px;
+
     line-height:1.8;
 }
 
 .buttons{
     display:flex;
-    justify-content:center;
-    gap:15px;
 
-    margin-top:28px;
+    justify-content:center;
+
+    gap:15px;
 
     flex-wrap:wrap;
 }
 
 .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-
-    min-width:185px;
+    min-width:190px;
 
     padding:15px 25px;
+
+    display:inline-flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:9px;
 
     border-radius:13px;
 
     text-decoration:none;
 
-    font-size:14px;
-    font-weight:800;
+    font-size:13px;
+
+    font-weight:900;
 
     transition:.3s;
 }
 
-.btn-yellow{
-    color:#16120a;
-
-    background:linear-gradient(
-        135deg,
-        var(--yellow),
-        #ffbd18
-    );
-
-    box-shadow:
-        0 0 30px rgba(255,210,28,.28);
+.btn:hover{
+    transform:
+        translateY(-4px);
 }
 
-.btn-yellow:hover{
-    transform:translateY(-4px);
-    box-shadow:
-        0 10px 35px rgba(255,210,28,.4);
-}
+.yellow{
+    color:#171207;
 
-.btn-purple{
-    color:#fff;
-
-    background:rgba(18,12,36,.7);
-
-    border:1px solid var(--purple);
+    background:
+        linear-gradient(
+            135deg,
+            #ffe03b,
+            #ffb914
+        );
 
     box-shadow:
-        0 0 25px rgba(139,53,255,.15);
+        0 0 30px
+        rgba(255,210,28,.3);
 }
 
-.btn-purple:hover{
-    transform:translateY(-4px);
+.yellow:hover{
+    box-shadow:
+        0 10px 40px
+        rgba(255,210,28,.45);
+}
 
-    background:rgba(139,53,255,.14);
+.purple{
+    color:white;
+
+    background:
+        rgba(14,9,30,.8);
+
+    border:
+        1px solid
+        var(--purple);
 
     box-shadow:
-        0 10px 35px rgba(139,53,255,.3);
+        0 0 25px
+        rgba(129,44,255,.15);
 }
 
-/* ================= SECTIONS ================= */
+.purple:hover{
+    background:
+        rgba(129,44,255,.15);
 
-section{
+    box-shadow:
+        0 10px 40px
+        rgba(129,44,255,.3);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section.content{
     max-width:1250px;
+
     margin:auto;
 
-    padding:110px 25px;
+    padding:
+        105px
+        25px;
 }
 
 .section-label{
     text-align:center;
 
-    color:#a9a0c3;
+    color:#a6a8b8;
 
-    font-size:11px;
-    font-weight:800;
+    font-size:10px;
+
+    font-weight:900;
 
     letter-spacing:4px;
 
@@ -423,10 +509,11 @@ section{
     color:var(--yellow);
 }
 
-.title{
+.section-title{
     text-align:center;
 
     font-size:52px;
+
     font-weight:900;
 
     letter-spacing:-2px;
@@ -434,11 +521,13 @@ section{
     margin-bottom:55px;
 }
 
-.title span{
+.section-title span{
     color:var(--purple2);
 }
 
-/* ================= CARDS ================= */
+/* =========================
+   CARDS
+========================= */
 
 .cards{
     display:grid;
@@ -450,37 +539,39 @@ section{
 }
 
 .card{
+    min-height:285px;
+
     position:relative;
 
-    padding:32px 25px;
+    padding:30px 25px;
 
-    min-height:280px;
+    overflow:hidden;
+
+    border-radius:20px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(18,22,42,.9),
-            rgba(7,10,21,.9)
+            rgba(20,24,44,.95),
+            rgba(7,10,20,.97)
         );
 
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    overflow:hidden;
+    border:
+        1px solid
+        rgba(255,255,255,.09);
 
     transition:.35s;
 }
 
-.card:before{
+.card::before{
     content:"";
 
     position:absolute;
 
-    top:0;
     left:0;
+    right:0;
+    top:0;
 
-    width:100%;
     height:2px;
 
     background:
@@ -490,243 +581,378 @@ section{
             var(--purple),
             transparent
         );
-
-    opacity:.5;
 }
 
 .card:hover{
-    transform:translateY(-9px);
+    transform:
+        translateY(-9px);
 
-    border-color:rgba(139,53,255,.65);
+    border-color:
+        rgba(129,44,255,.65);
 
     box-shadow:
-        0 20px 50px rgba(0,0,0,.35),
-        0 0 30px rgba(139,53,255,.08);
+        0 25px 60px
+        rgba(0,0,0,.4),
+
+        0 0 30px
+        rgba(129,44,255,.08);
 }
 
 .card-icon{
-    width:65px;
-    height:65px;
+    width:68px;
+    height:68px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
-    font-size:35px;
+    border-radius:17px;
+
+    font-size:36px;
 
     margin-bottom:24px;
-
-    border-radius:16px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(139,53,255,.15),
-            rgba(255,210,28,.08)
+            rgba(129,44,255,.18),
+            rgba(255,210,28,.07)
         );
 
-    border:1px solid rgba(139,53,255,.25);
+    border:
+        1px solid
+        rgba(129,44,255,.25);
 }
 
-.card h2{
-    font-size:19px;
-    margin-bottom:12px;
+.card h3{
+    font-size:18px;
+
+    margin-bottom:13px;
 }
 
-.card:nth-child(even) h2{
-    color:var(--yellow);
-}
-
-.card:nth-child(odd) h2{
+.card:nth-child(odd) h3{
     color:var(--purple2);
+}
+
+.card:nth-child(even) h3{
+    color:var(--yellow);
 }
 
 .card p{
     color:var(--muted);
 
     font-size:13px;
+
     line-height:1.8;
 }
 
 .arrow{
     position:absolute;
 
-    bottom:22px;
-    right:25px;
+    bottom:20px;
+    right:23px;
 
     color:var(--yellow);
 
-    font-size:22px;
+    font-size:21px;
 
     transition:.25s;
 }
 
 .card:hover .arrow{
-    transform:translateX(6px);
+    transform:
+        translateX(6px);
 }
 
-/* ================= CREATOR ================= */
+/* =========================
+   CREATOR
+========================= */
 
 .creator-section{
-    max-width:none;
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        100px
+        25px;
 
     background:
         radial-gradient(
             circle at 25% 50%,
-            rgba(139,53,255,.2),
-            transparent 35%
+            rgba(129,44,255,.25),
+            transparent 32%
         ),
         linear-gradient(
             90deg,
-            #070916,
-            #0b0c1c,
-            #070916
+            #070917,
+            #0b0d1e,
+            #070917
         );
 
-    border-top:1px solid rgba(255,255,255,.05);
-    border-bottom:1px solid rgba(255,255,255,.05);
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
 }
 
-.creator-inner{
-    max-width:1000px;
+.creator-section::before{
+    content:"🎮";
+
+    position:absolute;
+
+    left:8%;
+
+    top:50%;
+
+    transform:
+        translateY(-50%)
+        rotate(-8deg);
+
+    font-size:180px;
+
+    opacity:.08;
+
+    filter:
+        drop-shadow(
+            0 0 30px
+            var(--purple)
+        );
+}
+
+.creator-section::after{
+    content:"👑";
+
+    position:absolute;
+
+    right:8%;
+
+    top:50%;
+
+    transform:
+        translateY(-50%)
+        rotate(8deg);
+
+    font-size:150px;
+
+    opacity:.07;
+}
+
+.creator{
+    max-width:950px;
+
     margin:auto;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    position:relative;
 
-    gap:70px;
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:60px;
 }
 
 .creator-avatar{
-    width:260px;
-    height:260px;
+    width:230px;
+    height:230px;
+
+    flex-shrink:0;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
-    font-size:110px;
-
     border-radius:50%;
+
+    font-size:95px;
 
     background:
         radial-gradient(
             circle,
-            rgba(139,53,255,.4),
-            rgba(9,8,25,.8) 65%
+            rgba(129,44,255,.4),
+            rgba(7,8,23,.9) 68%
         );
 
-    border:1px solid rgba(139,53,255,.55);
+    border:
+        1px solid
+        rgba(129,44,255,.55);
 
     box-shadow:
-        0 0 60px rgba(139,53,255,.25);
+        0 0 70px
+        rgba(129,44,255,.25);
+
+    animation:
+        avatarFloat 4s
+        ease-in-out
+        infinite;
 }
 
-.creator-info{
-    max-width:520px;
+@keyframes avatarFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
-.creator-small{
+.creator-label{
     color:var(--purple2);
 
-    font-size:11px;
-    font-weight:800;
+    font-size:10px;
+
+    font-weight:900;
 
     letter-spacing:4px;
 }
 
 .creator-name{
     font-size:60px;
+
     font-weight:900;
 
-    margin:10px 0 15px;
+    margin:
+        8px
+        0
+        14px;
 }
 
 .creator-name span{
     color:var(--purple2);
 }
 
-.creator-info p{
+.creator-text{
+    max-width:550px;
+
     color:var(--muted);
+
+    font-size:14px;
 
     line-height:1.8;
 
     margin-bottom:25px;
 }
 
-/* ================= COINS ================= */
-
-.coins-section{
-    position:relative;
-}
+/* =========================
+   COINS
+========================= */
 
 .coin-box{
-    max-width:900px;
+    max-width:950px;
 
     margin:auto;
 
     display:grid;
 
-    grid-template-columns:1fr 1.5fr;
+    grid-template-columns:
+        38%
+        62%;
+
+    border-radius:23px;
 
     overflow:hidden;
 
     background:
         linear-gradient(
             135deg,
-            rgba(20,24,42,.95),
-            rgba(7,9,18,.95)
+            rgba(20,24,43,.98),
+            rgba(7,9,18,.98)
         );
 
-    border:1px solid rgba(255,210,28,.45);
-
-    border-radius:22px;
+    border:
+        1px solid
+        rgba(255,210,28,.5);
 
     box-shadow:
-        0 20px 70px rgba(0,0,0,.3);
+        0 25px 80px
+        rgba(0,0,0,.35);
 }
 
-.coin-visual{
+.coin-art{
     min-height:320px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
+    position:relative;
 
     background:
         radial-gradient(
             circle,
-            rgba(255,210,28,.18),
+            rgba(255,210,28,.2),
             transparent 60%
         );
 }
 
-.coin-big{
-    font-size:120px;
+.coin-art::before{
+    content:"🪙";
+
+    font-size:125px;
 
     filter:
-        drop-shadow(0 0 25px rgba(255,210,28,.5));
+        drop-shadow(
+            0 0 30px
+            rgba(255,210,28,.6)
+        );
 
-    animation:coinFloat 3s ease-in-out infinite;
+    animation:
+        coinFloat 3s
+        ease-in-out
+        infinite;
+}
+
+.coin-art::after{
+    content:"💰";
+
+    position:absolute;
+
+    font-size:75px;
+
+    right:30px;
+
+    bottom:35px;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(255,210,28,.4)
+        );
 }
 
 @keyframes coinFloat{
+
     0%,100%{
-        transform:translateY(0) rotate(-3deg);
+        transform:
+            translateY(0)
+            rotate(-3deg);
     }
 
     50%{
-        transform:translateY(-15px) rotate(3deg);
+        transform:
+            translateY(-15px)
+            rotate(3deg);
     }
 }
 
 .coin-content{
-    padding:45px;
+    padding:48px;
 }
 
 .coin-content h2{
     font-size:32px;
+
     margin-bottom:15px;
 }
 
@@ -735,65 +961,77 @@ section{
 }
 
 .coin-content p{
+    max-width:480px;
+
     color:var(--muted);
 
     font-size:14px;
-    line-height:1.8;
 
-    max-width:450px;
+    line-height:1.8;
 }
 
 .price{
     display:inline-flex;
-    align-items:center;
-    gap:10px;
 
-    margin:25px 0;
+    margin:
+        25px
+        0;
 
-    padding:10px 20px;
+    padding:
+        9px
+        19px;
 
-    border:1px solid rgba(255,210,28,.5);
     border-radius:12px;
+
+    border:
+        1px solid
+        rgba(255,210,28,.5);
+
+    background:
+        rgba(255,210,28,.05);
 
     color:var(--yellow);
 
-    font-size:27px;
-    font-weight:900;
+    font-size:26px;
 
-    background:rgba(255,210,28,.05);
+    font-weight:900;
 }
 
-/* ================= FOOTER ================= */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-    padding:30px 25px;
+    padding:32px 25px;
 
-    border-top:1px solid rgba(255,255,255,.06);
+    border-top:
+        1px solid
+        rgba(255,255,255,.07);
 
-    color:#70768e;
+    color:#73798e;
 
-    font-size:13px;
+    font-size:12px;
 }
 
-.footer-inner{
+.footer{
     max-width:1250px;
+
     margin:auto;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 }
 
-.footer-logo{
-    color:#fff;
-    font-weight:800;
-}
-
-.footer-logo span{
+.footer strong{
     color:var(--yellow);
 }
 
-/* ================= RESPONSIVE ================= */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:900px){
 
@@ -802,28 +1040,30 @@ footer{
     }
 
     .cards{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .creator-inner{
+    .creator{
         flex-direction:column;
+
         text-align:center;
-        gap:35px;
+    }
+
+    .creator-text{
+        margin-left:auto;
+        margin-right:auto;
     }
 
     .coin-box{
         grid-template-columns:1fr;
-    }
-
-    .coin-visual{
-        min-height:220px;
     }
 }
 
 @media(max-width:600px){
 
     nav{
-        height:65px;
+        height:66px;
     }
 
     .discord{
@@ -831,16 +1071,18 @@ footer{
     }
 
     .hero{
-        min-height:700px;
+        min-height:720px;
     }
 
     .hero h1{
         font-size:65px;
+
         letter-spacing:-4px;
     }
 
-    .subtitle{
+    .tagline{
         font-size:8px;
+
         letter-spacing:3px;
     }
 
@@ -850,19 +1092,23 @@ footer{
 
     .buttons{
         flex-direction:column;
+
         align-items:center;
     }
 
     .btn{
         width:100%;
-        max-width:280px;
+
+        max-width:290px;
     }
 
-    section{
-        padding:75px 18px;
+    section.content{
+        padding:
+            75px
+            18px;
     }
 
-    .title{
+    .section-title{
         font-size:38px;
     }
 
@@ -870,10 +1116,17 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .creator-section{
+        padding:
+            75px
+            18px;
+    }
+
     .creator-avatar{
-        width:190px;
-        height:190px;
-        font-size:75px;
+        width:180px;
+        height:180px;
+
+        font-size:70px;
     }
 
     .creator-name{
@@ -881,355 +1134,350 @@ footer{
     }
 
     .coin-content{
-        padding:30px 25px;
+        padding:30px 24px;
     }
 
-    .coin-big{
-        font-size:90px;
-    }
-
-    .footer-inner{
+    .footer{
         flex-direction:column;
-        gap:12px;
+
+        gap:10px;
+
+        text-align:center;
     }
 }
-
 </style>
 </head>
 
+
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 
 <header>
 
 <nav>
 
-    <a href="#" class="logo">
-        <span class="logo-crown">♛</span>
-        Dani<span>SMP</span>
-    </a>
+<a href="#" class="logo">
+    <span class="logo-crown">♛</span>
+    Dani<span>SMP</span>
+</a>
 
-    <div class="nav-links">
+<div class="nav-links">
 
-        <a href="#" class="active">Главная</a>
+<a href="#" class="active">
+    Главная
+</a>
 
-        <a href="#about">
-            О сервере
-        </a>
+<a href="#about">
+    О сервере
+</a>
 
-        <a href="#creator">
-            Daniosha
-        </a>
+<a href="#creator">
+    Daniosha
+</a>
 
-        <a href="#coins">
-            Монеты
-        </a>
+<a href="#coins">
+    Монеты
+</a>
 
-    </div>
+</div>
 
-    <a
-        class="discord"
-        href="#"
-    >
-        💬 Discord
-    </a>
+<a href="#" class="discord">
+    💬 Discord
+</a>
 
 </nav>
 
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 
 <section class="hero">
 
-    <div class="hero-grid"></div>
+<div class="hero-content">
 
-    <div class="hero-content">
+<div class="badge">
+    🟩 MINECRAFT SMP
+</div>
 
-        <div class="badge">
-            <span>🟩</span>
-            MINECRAFT SMP
-        </div>
+<h1>
+    DaniSMP
+</h1>
 
-        <h1>DaniSMP</h1>
+<div class="tagline">
+    ВЫЖИВАНИЕ • РАЗВИТИЕ • СООБЩЕСТВО
+</div>
 
-        <div class="subtitle">
-            ВЫЖИВАНИЕ • РАЗВИТИЕ • СООБЩЕСТВО
-        </div>
+<p>
+    Добро пожаловать на DaniSMP!
+    Играй с друзьями, развивайся,
+    зарабатывай монеты и становись
+    частью нашего Minecraft-сообщества.
+</p>
 
-        <p>
-            Добро пожаловать на DaniSMP!
-            Играй с друзьями, развивайся,
-            зарабатывай монеты и становись
-            частью нашего Minecraft-сообщества.
-        </p>
+<div class="buttons">
 
-        <div class="buttons">
+<a
+    class="btn yellow"
+    href="#coins"
+>
+    🪙 Купить монеты →
+</a>
 
-            <a
-                href="#coins"
-                class="btn btn-yellow"
-            >
-                🪙 Купить монеты
-                →
-            </a>
+<a
+    class="btn purple"
+    href="#creator"
+>
+    🎥 Daniosha →
+</a>
 
-            <a
-                href="#creator"
-                class="btn btn-purple"
-            >
-                🎥 Daniosha
-                →
-            </a>
+</div>
 
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ================= ABOUT ================= -->
+<!-- ABOUT -->
 
-<section id="about">
+<section
+    id="about"
+    class="content"
+>
 
-    <div class="section-label">
-        <span>◆</span>
-        ПОЧЕМУ
-        <span>◆</span>
-    </div>
+<div class="section-label">
+    <span>◆</span>
+    ПОЧЕМУ
+    <span>◆</span>
+</div>
 
-    <h2 class="title">
-        <span>Dani</span>SMP?
-    </h2>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="card-icon">
-                🌎
-            </div>
-
-            <h2>
-                Уникальный мир
-            </h2>
-
-            <p>
-                Исследуй мир, строй базы,
-                создавай города и развивайся
-                вместе с другими игроками.
-            </p>
-
-            <div class="arrow">
-                →
-            </div>
-
-        </div>
+<h2 class="section-title">
+    <span>Dani</span>SMP?
+</h2>
 
 
-        <div class="card">
-
-            <div class="card-icon">
-                ⚔️
-            </div>
-
-            <h2>
-                Приключения
-            </h2>
-
-            <p>
-                Сражайся, проходи испытания
-                и участвуй в событиях DaniSMP.
-            </p>
-
-            <div class="arrow">
-                →
-            </div>
-
-        </div>
+<div class="cards">
 
 
-        <div class="card">
+<div class="card">
 
-            <div class="card-icon">
-                💰
-            </div>
+<div class="card-icon">
+    🌎
+</div>
 
-            <h2>
-                Экономика
-            </h2>
+<h3>
+    Уникальный мир
+</h3>
 
-            <p>
-                Торгуй с игроками,
-                зарабатывай игровую валюту
-                и развивай свою базу.
-            </p>
+<p>
+    Исследуй мир, строй базы,
+    создавай города и развивайся
+    вместе с другими игроками.
+</p>
 
-            <div class="arrow">
-                →
-            </div>
+<div class="arrow">
+    →
+</div>
 
-        </div>
+</div>
 
 
-        <div class="card">
+<div class="card">
 
-            <div class="card-icon">
-                👑
-            </div>
+<div class="card-icon">
+    ⚔️
+</div>
 
-            <h2>
-                Сообщество
-            </h2>
+<h3>
+    Приключения
+</h3>
 
-            <p>
-                Играй вместе с друзьями,
-                создавай команды и становись
-                частью DaniSMP.
-            </p>
+<p>
+    Сражайся, проходи испытания
+    и участвуй в событиях DaniSMP.
+</p>
 
-            <div class="arrow">
-                →
-            </div>
+<div class="arrow">
+    →
+</div>
 
-        </div>
+</div>
 
-    </div>
+
+<div class="card">
+
+<div class="card-icon">
+    💰
+</div>
+
+<h3>
+    Экономика
+</h3>
+
+<p>
+    Торгуй с игроками,
+    зарабатывай игровую валюту
+    и развивай свою базу.
+</p>
+
+<div class="arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+    👑
+</div>
+
+<h3>
+    Сообщество
+</h3>
+
+<p>
+    Играй вместе с друзьями,
+    создавай команды и становись
+    частью DaniSMP.
+</p>
+
+<div class="arrow">
+    →
+</div>
+
+</div>
+
+
+</div>
 
 </section>
 
 
-<!-- ================= CREATOR ================= -->
+<!-- CREATOR -->
 
 <section
     id="creator"
     class="creator-section"
 >
 
-    <div class="creator-inner">
+<div class="creator">
 
-        <div class="creator-avatar">
-            🎮
-        </div>
+<div class="creator-avatar">
+    🎮
+</div>
 
-        <div class="creator-info">
+<div>
 
-            <div class="creator-small">
-                НАШ СОЗДАТЕЛЬ
-            </div>
+<div class="creator-label">
+    НАШ СОЗДАТЕЛЬ
+</div>
 
-            <div class="creator-name">
-                Dani<span>osha</span> 👑
-            </div>
+<div class="creator-name">
+    Dani<span>osha</span> 👑
+</div>
 
-            <p>
-                Daniosha — стример и создатель
-                контента, связанный с DaniSMP.
-                Следи за его контентом и
-                приключениями на сервере.
-            </p>
+<p class="creator-text">
+    Daniosha — стример и создатель
+    контента, связанный с DaniSMP.
+    Следи за его контентом и
+    приключениями на сервере.
+</p>
 
-            <a
-                class="btn btn-yellow"
-                href="https://funpay.com/lots/offer?id=78168600"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                🔗 Перейти к Daniosha
-                →
-            </a>
+<a
+    class="btn yellow"
+    href="https://funpay.com/lots/offer?id=78168600"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    🔗 Перейти к Daniosha →
+</a>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
 
-<!-- ================= COINS ================= -->
+<!-- COINS -->
 
 <section
     id="coins"
-    class="coins-section"
+    class="content"
 >
 
-    <div class="section-label">
-        <span>◆</span>
-        ИГРОВЫЕ
-        <span>◆</span>
-    </div>
+<div class="section-label">
+    <span>◆</span>
+    ИГРОВЫЕ
+    <span>◆</span>
+</div>
 
-    <h2 class="title">
-        <span>Монеты</span>
-    </h2>
+<h2 class="section-title">
+    <span>Монеты</span>
+</h2>
 
-    <div class="coin-box">
 
-        <div class="coin-visual">
+<div class="coin-box">
 
-            <div class="coin-big">
-                🪙
-            </div>
 
-        </div>
+<div class="coin-art">
+</div>
 
-        <div class="coin-content">
 
-            <h2>
-                1000 <span>монет</span>
-            </h2>
+<div class="coin-content">
 
-            <p>
-                Пополни свой игровой баланс
-                и используй монеты для покупок
-                и развития на DaniSMP.
-            </p>
+<h2>
+    1000 <span>монет</span>
+</h2>
 
-            <div class="price">
-                🪙 1000
-            </div>
+<p>
+    Пополни свой игровой баланс
+    и используй монеты для покупок
+    и развития на DaniSMP.
+</p>
 
-            <br>
+<div class="price">
+    🪙 1000
+</div>
 
-            <a
-                class="btn btn-yellow"
-                href="https://funpay.com/lots/offer?id=78167287"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                🛒 Купить 1000 монет
-                →
-            </a>
+<br>
 
-        </div>
+<a
+    class="btn yellow"
+    href="https://funpay.com/lots/offer?id=78167287"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    🛒 Купить 1000 монет →
+</a>
 
-    </div>
+</div>
+
+</div>
 
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <footer>
 
-    <div class="footer-inner">
+<div class="footer">
 
-        <div>
-            © <span id="year"></span>
-            <span class="footer-logo">
-                DaniSMP
-            </span>
-            — Minecraft Server
-        </div>
+<div>
+    © <span id="year"></span>
+    <strong>DaniSMP</strong>
+    — Minecraft Server
+</div>
 
-        <div>
-            Сделано для нашего сообщества 👑
-        </div>
+<div>
+    Сделано для нашего сообщества 👑
+</div>
 
-    </div>
+</div>
 
 </footer>
 
@@ -1244,4 +1492,5 @@ document.getElementById("year").textContent =
 </body>
 </html>
 ```
+
 
