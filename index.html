@@ -1,480 +1,1247 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DaniSMP — Minecraft Server</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
+
 :root{
-    color-scheme:dark;
-    --bg:#080510;
-    --surface:rgba(255,255,255,.06);
+    --bg:#050711;
+    --bg2:#080b18;
+    --card:rgba(13,17,32,.78);
+
+    --yellow:#ffd21c;
+    --yellow2:#ffea68;
+
+    --purple:#8b35ff;
+    --purple2:#b85cff;
+
     --text:#fff;
-    --muted:#c9c2d8;
-    --yellow:#facc15;
-    --purple:#7c3aed;
-    --violet:#a855f7
+    --muted:#9ea4bd;
+
+    --border:rgba(255,255,255,.09);
 }
 
 *{
-    box-sizing:border-box;
     margin:0;
-    padding:0
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth
+    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Arial,sans-serif;
+    font-family:Inter,Arial,sans-serif;
     color:var(--text);
     background:
-        radial-gradient(circle at 20% 20%,#7c3aed,transparent 30%),
-        radial-gradient(circle at 80% 80%,#facc15,transparent 25%),
+        radial-gradient(circle at 50% -10%,rgba(123,40,255,.25),transparent 35%),
+        radial-gradient(circle at 90% 50%,rgba(255,207,20,.07),transparent 25%),
         var(--bg);
-    min-height:100vh
+    overflow-x:hidden;
 }
+
+/* ================= HEADER ================= */
 
 header{
     position:fixed;
-    width:100%;
     top:0;
-    z-index:10;
-    background:rgba(10,5,20,.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(250,204,21,.3)
+    left:0;
+    width:100%;
+    z-index:100;
+
+    background:rgba(4,6,14,.72);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 nav{
-    max-width:1100px;
+    max-width:1250px;
+    height:76px;
     margin:auto;
-    padding:18px 25px;
+
+    padding:0 25px;
+
     display:flex;
+    align-items:center;
     justify-content:space-between;
-    align-items:center
 }
 
 .logo{
-    font-size:28px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    font-size:24px;
     font-weight:900;
-    color:var(--yellow);
-    text-shadow:0 0 20px var(--yellow)
 }
 
-nav a{
+.logo-crown{
+    color:var(--yellow);
+    font-size:27px;
+    filter:drop-shadow(0 0 10px rgba(255,210,28,.6));
+}
+
+.logo span{
+    background:linear-gradient(90deg,#fff,var(--yellow));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+}
+
+.nav-links a{
+    position:relative;
+
+    color:#bfc3d7;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:#fff;
+}
+
+.nav-links a.active{
+    color:var(--yellow);
+}
+
+.nav-links a.active:after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-23px;
+
+    height:2px;
+
+    background:var(--yellow);
+    box-shadow:0 0 12px var(--yellow);
+}
+
+.discord{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 19px;
+
+    border:1px solid var(--purple);
+    border-radius:12px;
+
     color:#fff;
     text-decoration:none;
-    margin-left:25px;
-    transition:.2s
+
+    font-weight:700;
+    font-size:14px;
+
+    transition:.25s;
 }
 
-nav a:hover{
-    color:var(--yellow)
+.discord:hover{
+    background:rgba(139,53,255,.16);
+    box-shadow:0 0 25px rgba(139,53,255,.3);
+    transform:translateY(-2px);
 }
+
+/* ================= HERO ================= */
 
 .hero{
-    min-height:100vh;
+    min-height:760px;
+    height:100vh;
+
+    position:relative;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     text-align:center;
-    padding:100px 20px 50px
+
+    overflow:hidden;
+
+    padding:100px 20px 60px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,7,17,.25),
+            rgba(5,7,17,.8)
+        ),
+        radial-gradient(
+            circle at center,
+            rgba(125,42,255,.18),
+            transparent 45%
+        );
+}
+
+.hero:before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5,7,17,.95),
+            transparent 35%,
+            transparent 65%,
+            rgba(5,7,17,.95)
+        );
+
+    pointer-events:none;
+}
+
+.hero-grid{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+
+    background-size:60px 60px;
+
+    mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+
+    opacity:.35;
 }
 
 .hero-content{
-    max-width:850px
+    position:relative;
+    z-index:2;
+
+    max-width:850px;
 }
 
 .badge{
-    display:inline-block;
-    color:var(--yellow);
-    border:1px solid var(--yellow);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:9px 18px;
+
+    border:1px solid rgba(139,53,255,.45);
     border-radius:30px;
-    padding:8px 18px;
-    margin-bottom:25px;
-    box-shadow:0 0 20px rgba(250,204,21,.12)
+
+    background:rgba(20,12,40,.7);
+
+    color:#ddd3ff;
+
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.7px;
+
+    box-shadow:
+        0 0 25px rgba(139,53,255,.12);
+
+    margin-bottom:27px;
 }
 
-h1{
-    font-size:clamp(60px,12vw,120px);
-    font-weight:1000;
-    background:linear-gradient(
-        135deg,
-        var(--yellow),
-        #fff,
-        var(--violet)
-    );
+.badge span{
+    font-size:17px;
+}
+
+.hero h1{
+    font-size:clamp(70px,12vw,145px);
+    line-height:.9;
+
+    font-weight:900;
+    letter-spacing:-6px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #ffe342 0%,
+            #fff 35%,
+            #a43cff 72%,
+            #7120d9 100%
+        );
+
     -webkit-background-clip:text;
     background-clip:text;
-    color:transparent
+    color:transparent;
+
+    filter:
+        drop-shadow(0 0 25px rgba(255,210,28,.16))
+        drop-shadow(0 0 40px rgba(139,53,255,.2));
+
+    animation:titleGlow 4s ease-in-out infinite;
+}
+
+@keyframes titleGlow{
+    0%,100%{
+        filter:
+            drop-shadow(0 0 20px rgba(255,210,28,.12))
+            drop-shadow(0 0 35px rgba(139,53,255,.18));
+    }
+
+    50%{
+        filter:
+            drop-shadow(0 0 30px rgba(255,210,28,.3))
+            drop-shadow(0 0 55px rgba(139,53,255,.3));
+    }
+}
+
+.subtitle{
+    margin-top:20px;
+
+    color:#ddd8e8;
+
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:5px;
 }
 
 .hero p{
-    color:#d8d2e8;
-    font-size:19px;
-    line-height:1.7;
-    margin:30px auto;
-    max-width:650px
+    max-width:600px;
+
+    margin:25px auto;
+
+    color:#bfc3d7;
+
+    font-size:16px;
+    line-height:1.8;
 }
 
 .buttons{
     display:flex;
     justify-content:center;
     gap:15px;
-    flex-wrap:wrap
+
+    margin-top:28px;
+
+    flex-wrap:wrap;
 }
 
 .btn{
-    display:inline-block;
-    padding:15px 28px;
-    border-radius:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    min-width:185px;
+
+    padding:15px 25px;
+
+    border-radius:13px;
+
     text-decoration:none;
-    font-weight:bold;
-    transition:.25s;
-    border:0;
-    cursor:pointer;
-    font-size:15px
+
+    font-size:14px;
+    font-weight:800;
+
+    transition:.3s;
 }
 
-.yellow{
-    background:var(--yellow);
-    color:#15100a;
-    box-shadow:0 0 25px rgba(250,204,21,.35)
+.btn-yellow{
+    color:#16120a;
+
+    background:linear-gradient(
+        135deg,
+        var(--yellow),
+        #ffbd18
+    );
+
+    box-shadow:
+        0 0 30px rgba(255,210,28,.28);
 }
 
-.purple{
-    background:var(--purple);
-    color:#fff;
-    box-shadow:0 0 25px rgba(124,58,237,.35)
-}
-
-.btn:hover{
+.btn-yellow:hover{
     transform:translateY(-4px);
-    filter:brightness(1.05)
+    box-shadow:
+        0 10px 35px rgba(255,210,28,.4);
 }
+
+.btn-purple{
+    color:#fff;
+
+    background:rgba(18,12,36,.7);
+
+    border:1px solid var(--purple);
+
+    box-shadow:
+        0 0 25px rgba(139,53,255,.15);
+}
+
+.btn-purple:hover{
+    transform:translateY(-4px);
+
+    background:rgba(139,53,255,.14);
+
+    box-shadow:
+        0 10px 35px rgba(139,53,255,.3);
+}
+
+/* ================= SECTIONS ================= */
 
 section{
-    max-width:1100px;
+    max-width:1250px;
     margin:auto;
-    padding:90px 25px
+
+    padding:110px 25px;
+}
+
+.section-label{
+    text-align:center;
+
+    color:#a9a0c3;
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:4px;
+
+    margin-bottom:10px;
+}
+
+.section-label span{
+    color:var(--yellow);
 }
 
 .title{
     text-align:center;
-    font-size:42px;
-    margin-bottom:45px
+
+    font-size:52px;
+    font-weight:900;
+
+    letter-spacing:-2px;
+
+    margin-bottom:55px;
 }
 
 .title span{
-    color:var(--yellow)
+    color:var(--purple2);
 }
+
+/* ================= CARDS ================= */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
 }
 
 .card{
-    padding:35px;
-    border-radius:22px;
-    background:var(--surface);
-    border:1px solid rgba(255,255,255,.1);
-    backdrop-filter:blur(10px);
-    transition:.3s
+    position:relative;
+
+    padding:32px 25px;
+
+    min-height:280px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,22,42,.9),
+            rgba(7,10,21,.9)
+        );
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.35s;
+}
+
+.card:before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--purple),
+            transparent
+        );
+
+    opacity:.5;
 }
 
 .card:hover{
-    transform:translateY(-7px);
-    border-color:var(--yellow);
-    box-shadow:0 15px 45px rgba(0,0,0,.18)
+    transform:translateY(-9px);
+
+    border-color:rgba(139,53,255,.65);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35),
+        0 0 30px rgba(139,53,255,.08);
 }
 
-.icon{
-    font-size:45px;
-    margin-bottom:20px
+.card-icon{
+    width:65px;
+    height:65px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:35px;
+
+    margin-bottom:24px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,53,255,.15),
+            rgba(255,210,28,.08)
+        );
+
+    border:1px solid rgba(139,53,255,.25);
 }
 
 .card h2{
+    font-size:19px;
+    margin-bottom:12px;
+}
+
+.card:nth-child(even) h2{
     color:var(--yellow);
-    margin-bottom:15px
+}
+
+.card:nth-child(odd) h2{
+    color:var(--purple2);
 }
 
 .card p{
     color:var(--muted);
-    line-height:1.7
+
+    font-size:13px;
+    line-height:1.8;
 }
 
-.creator{
-    text-align:center;
+.arrow{
+    position:absolute;
+
+    bottom:22px;
+    right:25px;
+
+    color:var(--yellow);
+
+    font-size:22px;
+
+    transition:.25s;
+}
+
+.card:hover .arrow{
+    transform:translateX(6px);
+}
+
+/* ================= CREATOR ================= */
+
+.creator-section{
+    max-width:none;
+
     background:
+        radial-gradient(
+            circle at 25% 50%,
+            rgba(139,53,255,.2),
+            transparent 35%
+        ),
         linear-gradient(
-            135deg,
-            rgba(124,58,237,.25),
-            rgba(250,204,21,.1)
-        )
+            90deg,
+            #070916,
+            #0b0c1c,
+            #070916
+        );
+
+    border-top:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.creator-inner{
+    max-width:1000px;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:70px;
+}
+
+.creator-avatar{
+    width:260px;
+    height:260px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:110px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139,53,255,.4),
+            rgba(9,8,25,.8) 65%
+        );
+
+    border:1px solid rgba(139,53,255,.55);
+
+    box-shadow:
+        0 0 60px rgba(139,53,255,.25);
+}
+
+.creator-info{
+    max-width:520px;
+}
+
+.creator-small{
+    color:var(--purple2);
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:4px;
 }
 
 .creator-name{
-    font-size:55px;
+    font-size:60px;
     font-weight:900;
-    margin-bottom:15px
+
+    margin:10px 0 15px;
 }
 
 .creator-name span{
-    color:var(--violet)
+    color:var(--purple2);
 }
 
-.coin-card{
-    max-width:600px;
+.creator-info p{
+    color:var(--muted);
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+}
+
+/* ================= COINS ================= */
+
+.coins-section{
+    position:relative;
+}
+
+.coin-box{
+    max-width:900px;
+
     margin:auto;
-    text-align:center;
-    border:2px solid rgba(250,204,21,.45)
+
+    display:grid;
+
+    grid-template-columns:1fr 1.5fr;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20,24,42,.95),
+            rgba(7,9,18,.95)
+        );
+
+    border:1px solid rgba(255,210,28,.45);
+
+    border-radius:22px;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.3);
 }
 
-.coin{
-    font-size:75px;
-    margin-bottom:15px
+.coin-visual{
+    min-height:320px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,210,28,.18),
+            transparent 60%
+        );
+}
+
+.coin-big{
+    font-size:120px;
+
+    filter:
+        drop-shadow(0 0 25px rgba(255,210,28,.5));
+
+    animation:coinFloat 3s ease-in-out infinite;
+}
+
+@keyframes coinFloat{
+    0%,100%{
+        transform:translateY(0) rotate(-3deg);
+    }
+
+    50%{
+        transform:translateY(-15px) rotate(3deg);
+    }
+}
+
+.coin-content{
+    padding:45px;
+}
+
+.coin-content h2{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.coin-content h2 span{
+    color:var(--purple2);
+}
+
+.coin-content p{
+    color:var(--muted);
+
+    font-size:14px;
+    line-height:1.8;
+
+    max-width:450px;
 }
 
 .price{
-    font-size:40px;
-    font-weight:900;
-    color:var(--yellow);
-    margin:20px
-}
-
-.copy-row{
-    display:flex;
+    display:inline-flex;
+    align-items:center;
     gap:10px;
-    justify-content:center;
-    flex-wrap:wrap;
-    margin-top:18px
+
+    margin:25px 0;
+
+    padding:10px 20px;
+
+    border:1px solid rgba(255,210,28,.5);
+    border-radius:12px;
+
+    color:var(--yellow);
+
+    font-size:27px;
+    font-weight:900;
+
+    background:rgba(255,210,28,.05);
 }
 
-.server-ip{
-    padding:12px 16px;
-    border:1px solid rgba(250,204,21,.35);
-    border-radius:10px;
-    background:rgba(0,0,0,.2);
-    color:#fff;
-    font-family:monospace
-}
-
-.status{
-    margin-top:18px;
-    color:#bdb5cd;
-    font-size:14px
-}
-
-.status-dot{
-    display:inline-block;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#4ade80;
-    margin-right:7px;
-    box-shadow:0 0 10px #4ade80
-}
+/* ================= FOOTER ================= */
 
 footer{
-    text-align:center;
-    padding:35px;
-    color:#9189a5;
-    border-top:1px solid rgba(255,255,255,.08)
+    padding:30px 25px;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+    color:#70768e;
+
+    font-size:13px;
 }
 
-footer strong{
-    color:var(--yellow)
+.footer-inner{
+    max-width:1250px;
+    margin:auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-@media(max-width:700px){
-    nav div:last-child{
-        display:none
+.footer-logo{
+    color:#fff;
+    font-weight:800;
+}
+
+.footer-logo span{
+    color:var(--yellow);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
     }
 
     .cards{
-        grid-template-columns:1fr
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .creator-name{
-        font-size:40px
+    .creator-inner{
+        flex-direction:column;
+        text-align:center;
+        gap:35px;
+    }
+
+    .coin-box{
+        grid-template-columns:1fr;
+    }
+
+    .coin-visual{
+        min-height:220px;
+    }
+}
+
+@media(max-width:600px){
+
+    nav{
+        height:65px;
+    }
+
+    .discord{
+        display:none;
+    }
+
+    .hero{
+        min-height:700px;
+    }
+
+    .hero h1{
+        font-size:65px;
+        letter-spacing:-4px;
+    }
+
+    .subtitle{
+        font-size:8px;
+        letter-spacing:3px;
     }
 
     .hero p{
-        font-size:17px
+        font-size:14px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .btn{
+        width:100%;
+        max-width:280px;
+    }
+
+    section{
+        padding:75px 18px;
     }
 
     .title{
-        font-size:34px
+        font-size:38px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .creator-avatar{
+        width:190px;
+        height:190px;
+        font-size:75px;
+    }
+
+    .creator-name{
+        font-size:43px;
+    }
+
+    .coin-content{
+        padding:30px 25px;
+    }
+
+    .coin-big{
+        font-size:90px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        gap:12px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<header>
-<nav>
-    <div class="logo">DaniSMP</div>
+<!-- ================= HEADER ================= -->
 
-    <div>
-        <a href="#about">О сервере</a>
-        <a href="#creator">Daniosha</a>
-        <a href="#coins">Монеты</a>
+<header>
+
+<nav>
+
+    <a href="#" class="logo">
+        <span class="logo-crown">♛</span>
+        Dani<span>SMP</span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="#" class="active">Главная</a>
+
+        <a href="#about">
+            О сервере
+        </a>
+
+        <a href="#creator">
+            Daniosha
+        </a>
+
+        <a href="#coins">
+            Монеты
+        </a>
+
     </div>
+
+    <a
+        class="discord"
+        href="#"
+    >
+        💬 Discord
+    </a>
+
 </nav>
+
 </header>
 
+
+<!-- ================= HERO ================= -->
+
 <section class="hero">
-<div class="hero-content">
 
-    <div class="badge">⚡ MINECRAFT SMP</div>
+    <div class="hero-grid"></div>
 
-    <h1>DaniSMP</h1>
+    <div class="hero-content">
 
-    <p>
-        Добро пожаловать на DaniSMP!
-        Играй с друзьями, развивайся, зарабатывай монеты
-        и становись частью нашего Minecraft-сообщества.
-    </p>
+        <div class="badge">
+            <span>🟩</span>
+            MINECRAFT SMP
+        </div>
 
-    <div class="buttons">
-        <a class="btn yellow" href="#coins">
-            🪙 Купить монеты
-        </a>
+        <h1>DaniSMP</h1>
 
-        <a class="btn purple" href="#creator">
-            🎥 Daniosha
-        </a>
+        <div class="subtitle">
+            ВЫЖИВАНИЕ • РАЗВИТИЕ • СООБЩЕСТВО
+        </div>
+
+        <p>
+            Добро пожаловать на DaniSMP!
+            Играй с друзьями, развивайся,
+            зарабатывай монеты и становись
+            частью нашего Minecraft-сообщества.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="#coins"
+                class="btn btn-yellow"
+            >
+                🪙 Купить монеты
+                →
+            </a>
+
+            <a
+                href="#creator"
+                class="btn btn-purple"
+            >
+                🎥 Daniosha
+                →
+            </a>
+
+        </div>
+
     </div>
 
-</div>
 </section>
+
+
+<!-- ================= ABOUT ================= -->
 
 <section id="about">
 
-<h2 class="title">
-    Почему <span>DaniSMP?</span>
-</h2>
-
-<div class="cards">
-
-<div class="card">
-    <div class="icon">🌎</div>
-    <h2>Уникальный мир</h2>
-    <p>
-        Исследуй мир, строй базы, создавай города
-        и развивайся вместе с другими игроками.
-    </p>
-</div>
-
-<div class="card">
-    <div class="icon">⚔️</div>
-    <h2>Приключения</h2>
-    <p>
-        Сражайся, проходи испытания
-        и участвуй в событиях DaniSMP.
-    </p>
-</div>
-
-<div class="card">
-    <div class="icon">💰</div>
-    <h2>Экономика</h2>
-    <p>
-        Торгуй с игроками, зарабатывай игровую валюту
-        и развивай свою базу.
-    </p>
-</div>
-
-<div class="card">
-    <div class="icon">👑</div>
-    <h2>Сообщество</h2>
-    <p>
-        Играй вместе с друзьями, создавай команды
-        и становись частью DaniSMP.
-    </p>
-</div>
-
-</div>
-</section>
-
-<section id="creator">
-
-<div class="card creator">
-
-    <div class="icon">🎥</div>
-
-    <div class="creator-name">
-        <span>Daniosha</span>
+    <div class="section-label">
+        <span>◆</span>
+        ПОЧЕМУ
+        <span>◆</span>
     </div>
 
-    <p>
-        Daniosha — стример и создатель контента,
-        связанный с DaniSMP. Следи за его контентом
-        и приключениями на сервере.
-    </p>
+    <h2 class="title">
+        <span>Dani</span>SMP?
+    </h2>
 
-    <br>
+    <div class="cards">
 
-    <a
-        class="btn yellow"
-        href="https://funpay.com/lots/offer?id=78168600"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        🔗 Перейти к Daniosha
-    </a>
+        <div class="card">
 
-</div>
+            <div class="card-icon">
+                🌎
+            </div>
 
-</section>
+            <h2>
+                Уникальный мир
+            </h2>
 
-<section id="coins">
+            <p>
+                Исследуй мир, строй базы,
+                создавай города и развивайся
+                вместе с другими игроками.
+            </p>
 
-<h2 class="title">
-    Игровые <span>монеты</span>
-</h2>
+            <div class="arrow">
+                →
+            </div>
 
-<div class="card coin-card">
+        </div>
 
-    <div class="coin">🪙</div>
 
-    <h2>1000 монет</h2>
+        <div class="card">
 
-    <p>
-        Пополни свой игровой баланс и используй монеты
-        для покупок и развития на DaniSMP.
-    </p>
+            <div class="card-icon">
+                ⚔️
+            </div>
 
-    <div class="price">
-        1000 🪙
+            <h2>
+                Приключения
+            </h2>
+
+            <p>
+                Сражайся, проходи испытания
+                и участвуй в событиях DaniSMP.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                💰
+            </div>
+
+            <h2>
+                Экономика
+            </h2>
+
+            <p>
+                Торгуй с игроками,
+                зарабатывай игровую валюту
+                и развивай свою базу.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                👑
+            </div>
+
+            <h2>
+                Сообщество
+            </h2>
+
+            <p>
+                Играй вместе с друзьями,
+                создавай команды и становись
+                частью DaniSMP.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
     </div>
 
-    <a
-        class="btn yellow"
-        href="https://funpay.com/lots/offer?id=78167287"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        Купить 1000 монет
-    </a>
+</section>
 
-</div>
+
+<!-- ================= CREATOR ================= -->
+
+<section
+    id="creator"
+    class="creator-section"
+>
+
+    <div class="creator-inner">
+
+        <div class="creator-avatar">
+            🎮
+        </div>
+
+        <div class="creator-info">
+
+            <div class="creator-small">
+                НАШ СОЗДАТЕЛЬ
+            </div>
+
+            <div class="creator-name">
+                Dani<span>osha</span> 👑
+            </div>
+
+            <p>
+                Daniosha — стример и создатель
+                контента, связанный с DaniSMP.
+                Следи за его контентом и
+                приключениями на сервере.
+            </p>
+
+            <a
+                class="btn btn-yellow"
+                href="https://funpay.com/lots/offer?id=78168600"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                🔗 Перейти к Daniosha
+                →
+            </a>
+
+        </div>
+
+    </div>
 
 </section>
+
+
+<!-- ================= COINS ================= -->
+
+<section
+    id="coins"
+    class="coins-section"
+>
+
+    <div class="section-label">
+        <span>◆</span>
+        ИГРОВЫЕ
+        <span>◆</span>
+    </div>
+
+    <h2 class="title">
+        <span>Монеты</span>
+    </h2>
+
+    <div class="coin-box">
+
+        <div class="coin-visual">
+
+            <div class="coin-big">
+                🪙
+            </div>
+
+        </div>
+
+        <div class="coin-content">
+
+            <h2>
+                1000 <span>монет</span>
+            </h2>
+
+            <p>
+                Пополни свой игровой баланс
+                и используй монеты для покупок
+                и развития на DaniSMP.
+            </p>
+
+            <div class="price">
+                🪙 1000
+            </div>
+
+            <br>
+
+            <a
+                class="btn btn-yellow"
+                href="https://funpay.com/lots/offer?id=78167287"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                🛒 Купить 1000 монет
+                →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
-    © <span id="year"></span>
-    <strong>DaniSMP</strong> — Minecraft Server
+
+    <div class="footer-inner">
+
+        <div>
+            © <span id="year"></span>
+            <span class="footer-logo">
+                DaniSMP
+            </span>
+            — Minecraft Server
+        </div>
+
+        <div>
+            Сделано для нашего сообщества 👑
+        </div>
+
+    </div>
+
 </footer>
 
+
 <script>
-document.getElementById('year').textContent =
+
+document.getElementById("year").textContent =
     new Date().getFullYear();
+
 </script>
 
 </body>
 </html>
+```
+
