@@ -1,1209 +1,616 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DaniSMP — Minecraft Server</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #090611;
-    color: white;
-    overflow-x: hidden;
-}
-
-/* =========================
-   BACKGROUND
-========================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -5;
-
-    background:
-        radial-gradient(circle at 50% 15%, rgba(255, 151, 48, .25), transparent 25%),
-        radial-gradient(circle at 15% 45%, rgba(119, 53, 255, .3), transparent 30%),
-        radial-gradient(circle at 85% 55%, rgba(255, 122, 35, .22), transparent 30%),
-        linear-gradient(180deg, #160d2b 0%, #10091d 50%, #07040c 100%);
-}
-
-/* stars */
-
-.stars,
-.stars::before,
-.stars::after {
-    position: fixed;
-    inset: 0;
-    content: "";
-    pointer-events: none;
-    z-index: -4;
-}
-
-.stars {
-    background-image:
-        radial-gradient(circle, white 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1px);
-    background-size: 110px 110px, 170px 170px;
-    opacity: .25;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 76px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 7%;
-
-    background: rgba(7, 4, 15, .65);
-    backdrop-filter: blur(16px);
-
-    border-bottom: 1px solid rgba(255,255,255,.08);
-
-    z-index: 100;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: 1000;
-    letter-spacing: -1px;
-}
-
-.logo span {
-    color: #ffb52e;
-}
-
-.nav-links {
-    display: flex;
-    gap: 34px;
-    list-style: none;
-}
-
-.nav-links a {
-    color: #ddd;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    transition: .25s;
-}
-
-.nav-links a:hover {
-    color: #ffb52e;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 850px;
-    position: relative;
-
-    display: flex;
-    align-items: center;
-
-    padding: 100px 7% 80px;
-
-    overflow: hidden;
-}
-
-/* mountains */
-
-.mountains {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-
-    background:
-        linear-gradient(135deg, transparent 50%, #100c17 51%) 0 100% / 30% 100%,
-        linear-gradient(225deg, transparent 50%, #151020 51%) 20% 100% / 35% 100%,
-        linear-gradient(135deg, transparent 50%, #0d0914 51%) 45% 100% / 35% 100%,
-        linear-gradient(225deg, transparent 50%, #130d1c 51%) 70% 100% / 35% 100%;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DaniSMP — Minecraft Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(255, 193, 7, .15), transparent 30%),
+                radial-gradient(circle at 80% 30%, rgba(255, 214, 60, .08), transparent 25%),
+                #080808;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ===== BACKGROUND ===== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .08;
+            background-image:
+                linear-gradient(45deg, #fff 25%, transparent 25%),
+                linear-gradient(-45deg, #fff 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #fff 75%),
+                linear-gradient(-45deg, transparent 75%, #fff 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+        }
+
+        /* ===== HEADER ===== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            background: rgba(8, 8, 8, .85);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255, 193, 7, .2);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #ffc107;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .25s;
+        }
+
+        nav a:hover {
+            color: #ffc107;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero {
+            min-height: 760px;
+            padding: 150px 20px 80px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            background: rgba(255,193,7,.12);
+            border: 1px solid rgba(255,193,7,.35);
+
+            padding: 9px 15px;
+            border-radius: 50px;
+
+            color: #ffc107;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 78px);
+            line-height: .95;
+            margin: 25px 0;
+
+            font-weight: 900;
+            letter-spacing: -4px;
+        }
+
+        .hero h1 span {
+            color: #ffc107;
+            text-shadow: 0 0 30px rgba(255,193,7,.25);
+        }
+
+        .hero p {
+            max-width: 580px;
+
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 25px;
+            border-radius: 10px;
+
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
+
+            transition: .25s;
+        }
+
+        .btn-yellow {
+            background: #ffc107;
+            color: #080808;
+            box-shadow: 0 10px 30px rgba(255,193,7,.18);
+        }
+
+        .btn-yellow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,193,7,.3);
+        }
+
+        .btn-dark {
+            border: 1px solid #333;
+            color: white;
+            background: #111;
+        }
+
+        .btn-dark:hover {
+            border-color: #ffc107;
+            color: #ffc107;
+        }
+
+        /* ===== HERO IMAGE ===== */
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image::before {
+            content: "";
+            position: absolute;
+            inset: 30px;
+
+            background: #ffc107;
+            filter: blur(100px);
+            opacity: .12;
+        }
+
+        .hero-image img {
+            position: relative;
+
+            width: 100%;
+            max-width: 560px;
+            display: block;
+            margin: auto;
+
+            border-radius: 18px;
+            border: 1px solid rgba(255,193,7,.25);
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,.7),
+                0 0 60px rgba(255,193,7,.08);
+
+            transition: .4s;
+        }
+
+        .hero-image img:hover {
+            transform: translateY(-8px) scale(1.015);
+        }
+
+        /* ===== SECTION ===== */
+
+        section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 100px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title small {
+            color: #ffc107;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-top: 10px;
+            font-weight: 900;
+        }
+
+        .section-title p {
+            color: #888;
+            margin-top: 15px;
+        }
+
+        /* ===== PRODUCTS ===== */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,.055),
+                rgba(255,255,255,.015)
+            );
+
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 18px;
+
+            padding: 30px;
+
+            transition: .35s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,193,7,.4);
+            box-shadow: 0 20px 70px rgba(0,0,0,.45);
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+
+            right: -80px;
+            top: -80px;
+
+            background: #ffc107;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .08;
+        }
+
+        .card-icon {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255,193,7,.1);
+            border: 1px solid rgba(255,193,7,.2);
+            border-radius: 15px;
+
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .card h3 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .card .subtitle {
+            color: #ffc107;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #999;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* ===== ITEMS ===== */
+
+        .items {
+            margin-top: 25px;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .item {
+            padding: 11px;
+
+            background: rgba(255,255,255,.035);
+            border-radius: 8px;
+
+            color: #ccc;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .item span {
+            color: #ffc107;
+        }
+
+        .buy {
+            display: block;
+
+            margin-top: 25px;
+            padding: 15px;
+
+            text-align: center;
+
+            background: #ffc107;
+            color: #080808;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 14px;
+
+            transition: .25s;
+        }
+
+        .buy:hover {
+            background: #ffd54f;
+            transform: translateY(-2px);
+        }
+
+        /* ===== FEATURES ===== */
 
-    opacity: .8;
-}
-
-/* Minecraft ground */
-
-.ground {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    height: 95px;
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            text-align: center;
+
+            padding: 35px 25px;
+
+            background: #0d0d0d;
+            border: 1px solid #1e1e1e;
+            border-radius: 15px;
+        }
 
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #171022 0 45px,
-            #1d1429 45px 90px
-        );
-
-    border-top: 7px solid #2b1d38;
-
-    box-shadow:
-        0 -10px 40px rgba(0,0,0,.6);
-}
-
-.ground::before {
-    content: "";
-    position: absolute;
-    top: -7px;
-    left: 0;
-    width: 100%;
-    height: 8px;
-    background: #46302c;
-}
-
-/* =========================
-   HERO CHARACTER
-========================= */
-
-.character {
-    position: absolute;
-    left: 7%;
-    bottom: 90px;
-
-    width: 280px;
-    height: 480px;
-
-    z-index: 2;
-
-    filter:
-        drop-shadow(0 20px 30px rgba(0,0,0,.8))
-        drop-shadow(0 0 35px rgba(141,61,255,.25));
-
-    animation: float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-/* head */
-
-.head {
-    position: absolute;
-    top: 15px;
-    left: 80px;
-
-    width: 120px;
-    height: 120px;
-
-    background:
-        linear-gradient(90deg, #b86e43 0 15%, #d99060 15% 80%, #9e5738 80%);
-    
-    border: 8px solid #21172b;
-
-    box-shadow:
-        inset -15px -15px rgba(0,0,0,.15),
-        15px 20px 0 rgba(0,0,0,.25);
-}
-
-/* hair */
-
-.head::before {
-    content: "";
-    position: absolute;
-
-    left: -8px;
-    top: -8px;
-
-    width: 120px;
-    height: 45px;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #18121b 0 18px,
-            #241828 18px 30px
-        );
-
-    border-bottom: 8px solid #21172b;
-}
-
-/* eyes */
-
-.head::after {
-    content: "■   ■";
-
-    position: absolute;
-
-    left: 26px;
-    top: 58px;
-
-    color: #21152b;
-    font-size: 19px;
-    letter-spacing: 16px;
-}
-
-/* body */
-
-.body {
-    position: absolute;
-    top: 135px;
-    left: 55px;
-
-    width: 170px;
-    height: 170px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #4929a8 0 20%,
-            #6d40d9 20% 80%,
-            #351b86 80%
-        );
-
-    border: 8px solid #21172b;
-}
-
-/* arms */
-
-.arm {
-    position: absolute;
-    top: 142px;
-
-    width: 55px;
-    height: 155px;
-
-    background: #5632bc;
-    border: 8px solid #21172b;
-}
-
-.arm.left {
-    left: 0;
-    transform: rotate(9deg);
-}
-
-.arm.right {
-    right: 0;
-    transform: rotate(-9deg);
-}
-
-/* legs */
-
-.leg {
-    position: absolute;
-    top: 295px;
-
-    width: 70px;
-    height: 170px;
-
-    background: #29213a;
-
-    border: 8px solid #21172b;
-}
-
-.leg.left {
-    left: 70px;
-}
-
-.leg.right {
-    left: 145px;
-}
-
-/* sword */
-
-.sword {
-    position: absolute;
-
-    right: -55px;
-    top: 150px;
-
-    width: 25px;
-    height: 230px;
-
-    background: linear-gradient(
-        90deg,
-        #c7e9ff,
-        #fff,
-        #7196b0
-    );
-
-    transform: rotate(-28deg);
-
-    box-shadow: 0 0 20px #8dd9ff;
-}
-
-.sword::before {
-    content: "";
-
-    position: absolute;
-
-    bottom: 0;
-    left: -35px;
-
-    width: 90px;
-    height: 18px;
-
-    background: #b77a32;
-
-    box-shadow: 0 7px #49301a;
-}
-
-/* =========================
-   CASTLE
-========================= */
-
-.castle {
-    position: absolute;
-
-    right: 4%;
-    bottom: 80px;
-
-    width: 420px;
-    height: 370px;
-
-    z-index: 1;
-
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,.6));
-}
-
-.castle-main {
-    position: absolute;
-
-    left: 80px;
-    bottom: 0;
-
-    width: 260px;
-    height: 220px;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            #4b3d4f 0 20px,
-            #554558 20px 40px
-        );
-
-    border: 8px solid #211a27;
-}
-
-.tower {
-    position: absolute;
-    bottom: 0;
-
-    width: 100px;
-    height: 300px;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            #514453 0 22px,
-            #645363 22px 44px
-        );
-
-    border: 8px solid #211a27;
-}
-
-.tower.left {
-    left: 0;
-}
-
-.tower.right {
-    right: 0;
-}
-
-.roof {
-    position: absolute;
-
-    top: -75px;
-    left: -25px;
-
-    width: 130px;
-    height: 90px;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #6c2b88 0 18px,
-            #8134a1 18px 36px
-        );
-
-    clip-path: polygon(50% 0,100% 100%,0 100%);
-
-    filter: drop-shadow(0 5px 0 #25132e);
-}
-
-.window {
-    position: absolute;
-
-    left: 30px;
-    top: 75px;
-
-    width: 35px;
-    height: 65px;
-
-    background: #ffb72f;
-
-    border: 6px solid #241a28;
-
-    box-shadow: 0 0 25px rgba(255,173,40,.7);
-}
-
-.window.two {
-    top: 180px;
-}
-
-.gate {
-    position: absolute;
-
-    left: 105px;
-    bottom: 0;
-
-    width: 70px;
-    height: 125px;
-
-    background: #17121c;
-
-    border: 8px solid #211a27;
-
-    border-radius: 45px 45px 0 0;
-}
-
-/* =========================
-   HERO CONTENT
-========================= */
-
-.hero-content {
-    position: relative;
-
-    width: 100%;
-    text-align: center;
-
-    z-index: 5;
-
-    margin-top: 20px;
-}
-
-.small-title {
-    display: inline-block;
-
-    padding: 8px 18px;
-
-    border: 1px solid rgba(255,188,48,.4);
-    border-radius: 100px;
-
-    color: #ffbd3e;
-
-    font-size: 13px;
-    font-weight: 800;
-
-    background: rgba(255,175,40,.07);
-
-    letter-spacing: 3px;
-}
-
-.hero h1 {
-    margin-top: 18px;
-
-    font-size: clamp(75px, 12vw, 170px);
-
-    line-height: .85;
-
-    font-weight: 1000;
-    letter-spacing: -8px;
-
-    color: white;
-
-    text-shadow:
-        0 7px 0 #3c2355,
-        0 14px 35px rgba(0,0,0,.8);
-}
-
-.hero h1 span {
-    color: #ffb72e;
-
-    text-shadow:
-        0 5px 0 #8d4b17,
-        0 12px 35px rgba(255,155,25,.3);
-}
-
-.hero-description {
-    max-width: 650px;
-
-    margin: 28px auto;
-
-    color: #c8c1d0;
-
-    font-size: 17px;
-    line-height: 1.7;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-width: 180px;
-
-    padding: 16px 25px;
-
-    border-radius: 12px;
-
-    text-decoration: none;
-
-    font-weight: 900;
-
-    transition: .25s;
-}
-
-.btn-primary {
-    color: #201204;
-
-    background: linear-gradient(
-        135deg,
-        #ffd15a,
-        #ff9f20
-    );
-
-    box-shadow:
-        0 8px 30px rgba(255,160,35,.3);
-}
-
-.btn-secondary {
-    color: white;
-
-    border: 1px solid rgba(255,255,255,.15);
-
-    background: rgba(255,255,255,.07);
-
-    backdrop-filter: blur(10px);
-}
-
-.btn:hover {
-    transform: translateY(-4px);
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-section {
-    padding: 110px 7%;
-    position: relative;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.section-title .label {
-    color: #ffb52e;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 4px;
-}
-
-.section-title h2 {
-    margin-top: 10px;
-
-    font-size: clamp(38px, 5vw, 65px);
-
-    font-weight: 1000;
-}
-
-.section-title p {
-    max-width: 650px;
-    margin: 15px auto;
-
-    color: #aaa2b5;
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.cards {
-    max-width: 1200px;
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 22px;
-}
-
-.card {
-    padding: 35px;
-
-    min-height: 230px;
-
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(121,69,194,.16),
-            rgba(255,255,255,.025)
-        );
-
-    border: 1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-        inset 0 1px rgba(255,255,255,.06),
-        0 20px 50px rgba(0,0,0,.2);
-
-    transition: .3s;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-
-    border-color: rgba(255,181,46,.35);
-
-    box-shadow:
-        0 20px 60px rgba(126,54,255,.2);
-}
-
-.card-icon {
-    width: 55px;
-    height: 55px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 15px;
-
-    font-size: 25px;
-
-    background: rgba(255,181,46,.12);
-
-    border: 1px solid rgba(255,181,46,.2);
-
-    margin-bottom: 25px;
-}
-
-.card h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-}
-
-.card p {
-    color: #a9a2b0;
-    line-height: 1.6;
-}
-
-/* =========================
-   DANIOSHA
-========================= */
-
-.creator {
-    max-width: 1200px;
-    margin: auto;
-
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-
-    overflow: hidden;
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            120deg,
-            #25113f,
-            #120b1c
-        );
-
-    border: 1px solid rgba(255,255,255,.1);
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.35);
-}
-
-.creator-image {
-    min-height: 360px;
-
-    position: relative;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(161,78,255,.5),
-            transparent 60%
-        ),
-        linear-gradient(
-            135deg,
-            #38165e,
-            #140b22
-        );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.creator-avatar {
-    width: 170px;
-    height: 170px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #8153dc,
-            #ffb32f
-        );
-
-    border-radius: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 70px;
-
-    box-shadow:
-        0 20px 70px rgba(150,70,255,.35);
-}
-
-.creator-info {
-    padding: 55px;
-}
-
-.creator-info .tag {
-    color: #ffb52e;
-
-    font-weight: 900;
-
-    letter-spacing: 3px;
-    font-size: 12px;
-}
-
-.creator-info h2 {
-    margin: 15px 0;
-
-    font-size: 50px;
-}
-
-.creator-info p {
-    color: #aaa4b1;
-
-    line-height: 1.7;
-
-    margin-bottom: 30px;
-}
-
-/* =========================
-   SHOP
-========================= */
-
-.shop {
-    max-width: 1100px;
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 22px;
-}
-
-.product {
-    padding: 35px;
-
-    border-radius: 24px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,179,46,.09),
-            rgba(110,54,190,.12)
-        );
-
-    border: 1px solid rgba(255,255,255,.09);
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-.product::after {
-    content: "DaniSMP";
-
-    position: absolute;
-
-    right: -20px;
-    bottom: -35px;
-
-    font-size: 70px;
-
-    font-weight: 1000;
-
-    color: rgba(255,255,255,.025);
-}
-
-.product-icon {
-    font-size: 50px;
-    margin-bottom: 20px;
-}
-
-.product h3 {
-    font-size: 25px;
-}
-
-.product p {
-    color: #a8a1ae;
-    margin: 12px 0 25px;
-    line-height: 1.6;
-}
-
-.price {
-    font-size: 30px;
-    font-weight: 1000;
-    color: #ffbd3f;
-
-    margin-bottom: 20px;
-}
-
-.buy {
-    display: inline-block;
-
-    padding: 13px 23px;
-
-    border-radius: 10px;
-
-    color: #1d1204;
-
-    background: #ffb52e;
-
-    text-decoration: none;
-
-    font-weight: 900;
-
-    transition: .2s;
-}
-
-.buy:hover {
-    transform: translateY(-3px);
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    padding: 50px 7%;
-
-    border-top: 1px solid rgba(255,255,255,.07);
-
-    text-align: center;
-
-    color: #77717e;
-
-    background: rgba(0,0,0,.2);
-}
-
-footer strong {
-    color: #ffb52e;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width: 950px) {
-
-    .nav-links {
-        display: none;
-    }
-
-    .hero {
-        min-height: 760px;
-    }
-
-    .character {
-        opacity: .35;
-        left: -70px;
-    }
-
-    .castle {
-        opacity: .35;
-        right: -100px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .creator {
-        grid-template-columns: 1fr;
-    }
-
-    .shop {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media(max-width: 600px) {
-
-    .hero {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .hero h1 {
-        font-size: 70px;
-        letter-spacing: -5px;
-    }
-
-    .hero-description {
-        font-size: 15px;
-    }
-
-    section {
-        padding: 80px 20px;
-    }
-
-    .creator-info {
-        padding: 35px 25px;
-    }
-
-    .creator-info h2 {
-        font-size: 38px;
-    }
-}
-</style>
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #777;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* ===== CTA ===== */
+
+        .cta {
+            margin-top: 30px;
+
+            padding: 70px 30px;
+
+            text-align: center;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,193,7,.15),
+                    rgba(255,193,7,.03)
+                );
+
+            border: 1px solid rgba(255,193,7,.25);
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            font-weight: 900;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 15px auto 30px;
+
+            color: #999;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            padding: 35px 20px;
+
+            text-align: center;
+
+            border-top: 1px solid #191919;
+
+            color: #666;
+            font-size: 12px;
+        }
+
+        footer span {
+            color: #ffc107;
+        }
+
+        /* ===== MOBILE ===== */
+
+        @media(max-width: 800px) {
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .cta h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
+<header>
+    <div class="navbar">
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+        <div class="logo">
+            Dani<span>SMP</span>
+        </div>
 
-<header class="navbar">
+        <nav>
+            <a href="#shop">Магазин</a>
+            <a href="#advantages">Преимущества</a>
+            <a href="#buy">Покупка</a>
+        </nav>
 
-    <div class="logo">
-        Dani<span>SMP</span>
+        <a
+            class="btn btn-yellow"
+            href="https://funpay.com/lots/offer?id=78168600"
+            target="_blank"
+        >
+            Купить сет
+        </a>
+
     </div>
-
-    <ul class="nav-links">
-        <li><a href="#home">Главная</a></li>
-        <li><a href="#about">О сервере</a></li>
-        <li><a href="#creator">Daniosha</a></li>
-        <li><a href="#shop">Магазин</a></li>
-    </ul>
-
 </header>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
-<main>
-
-<section class="hero" id="home">
-
-    <div class="mountains"></div>
-
-    <div class="character">
-
-        <div class="head"></div>
-
-        <div class="body"></div>
-
-        <div class="arm left"></div>
-        <div class="arm right"></div>
-
-        <div class="leg left"></div>
-        <div class="leg right"></div>
-
-        <div class="sword"></div>
-
-    </div>
-
-
-    <div class="castle">
-
-        <div class="castle-main">
-
-            <div class="gate"></div>
-
-            <div class="window"></div>
-            <div class="window two"></div>
-
-        </div>
-
-        <div class="tower left">
-            <div class="roof"></div>
-            <div class="window"></div>
-        </div>
-
-        <div class="tower right">
-            <div class="roof"></div>
-            <div class="window"></div>
-        </div>
-
-    </div>
-
+<section class="hero">
 
     <div class="hero-content">
 
-        <div class="small-title">
-            MINECRAFT SURVIVAL SERVER
+        <div>
+
+            <div class="badge">
+                ⚡ Официальный магазин DaniSMP
+            </div>
+
+            <h1>
+                СТАНЬ<br>
+                <span>СИЛЬНЕЕ.</span>
+            </h1>
+
+            <p>
+                Прокачай своего персонажа на DaniSMP.
+                Получай мощное снаряжение, ресурсы и игровую валюту
+                и отправляйся покорять сервер уже сегодня.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    href="#shop"
+                    class="btn btn-yellow"
+                >
+                    Открыть магазин →
+                </a>
+
+                <a
+                    href="https://funpay.com/lots/offer?id=78167287"
+                    target="_blank"
+                    class="btn btn-dark"
+                >
+                    Купить валюту
+                </a>
+
+            </div>
+
         </div>
 
-        <h1>
-            Dani<span>SMP</span>
-        </h1>
 
-        <p class="hero-description">
-            Добро пожаловать на DaniSMP — место, где начинаются
-            новые приключения, строятся огромные города и создаются
-            легендарные истории.
-        </p>
+        <div class="hero-image">
 
-        <div class="buttons">
-
-            <a
-                href="#shop"
-                class="btn btn-primary"
+            <!-- Сюда помещаем твою картинку -->
+            <img
+                src="daniosha.png"
+                alt="DaniSMP Daniosha Set"
             >
-                🛒 Открыть магазин
-            </a>
-
-            <a
-                href="#about"
-                class="btn btn-secondary"
-            >
-                Узнать больше →
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <div class="ground"></div>
-
-</section>
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section id="about">
-
-    <div class="section-title">
-
-        <div class="label">
-            DANI SMP
-        </div>
-
-        <h2>
-            Добро пожаловать
-        </h2>
-
-        <p>
-            Всё необходимое для комфортной игры
-            на нашем Minecraft сервере.
-        </p>
-
-    </div>
-
-
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="card-icon">
-                ⚔️
-            </div>
-
-            <h3>
-                Выживание
-            </h3>
-
-            <p>
-                Исследуй мир, добывай ресурсы,
-                строй базу и развивай своего персонажа.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-icon">
-                🏰
-            </div>
-
-            <h3>
-                Большой мир
-            </h3>
-
-            <p>
-                Огромный Minecraft-мир,
-                наполненный приключениями и секретами.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-icon">
-                👑
-            </div>
-
-            <h3>
-                Своя история
-            </h3>
-
-            <p>
-                Создавай собственную историю
-                вместе с другими игроками сервера.
-            </p>
 
         </div>
 
@@ -1212,148 +619,147 @@ footer strong {
 </section>
 
 
-<!-- =========================
-     CREATOR
-========================= -->
-
-<section id="creator">
-
-    <div class="section-title">
-
-        <div class="label">
-            CREATOR
-        </div>
-
-        <h2>
-            Daniosha
-        </h2>
-
-    </div>
-
-
-    <div class="creator">
-
-        <div class="creator-image">
-
-            <div class="creator-avatar">
-                👑
-            </div>
-
-        </div>
-
-
-        <div class="creator-info">
-
-            <div class="tag">
-                SERVER CREATOR
-            </div>
-
-            <h2>
-                Daniosha
-            </h2>
-
-            <p>
-                Создатель DaniSMP и человек,
-                который стоит за развитием проекта.
-                Поддержи сервер и получи эксклюзивные
-                возможности в игре.
-            </p>
-
-            <a
-                class="btn btn-primary"
-                href="https://funpay.com/lots/offer?id=78168600"
-                target="_blank"
-            >
-                Купить Daniosha
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     SHOP
-========================= -->
+<!-- SHOP -->
 
 <section id="shop">
 
     <div class="section-title">
 
-        <div class="label">
-            SHOP
-        </div>
+        <small>Наш магазин</small>
 
-        <h2>
-            Магазин DaniSMP
-        </h2>
+        <h2>Выбери свой предмет</h2>
 
         <p>
-            Поддержи сервер и получи игровые предметы.
+            Всё необходимое для комфортной игры на DaniSMP
         </p>
 
     </div>
 
 
-    <div class="shop">
+    <div class="products">
 
-        <div class="product">
 
-            <div class="product-icon">
-                👑
+        <!-- DANIOSHA SET -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                💎
+            </div>
+
+            <div class="subtitle">
+                Главный комплект
             </div>
 
             <h3>
-                Daniosha
+                Daniosha Armor Set
             </h3>
 
             <p>
-                Эксклюзивный игровой товар
-                для игроков DaniSMP.
+                Хочешь играть как настоящий топовый игрок?
+                Забирай легендарный комплект Daniosha.
+                Мощная броня, полезные зачарования, инструменты
+                и огромный запас ресурсов — всё уже собрано
+                в одном готовом сете.
             </p>
 
-            <div class="price">
-                FunPay
+            <div class="items">
+
+                <div class="item">
+                    💎 Алмазная броня
+                </div>
+
+                <div class="item">
+                    ⚔️ Незеритовые инструменты
+                </div>
+
+                <div class="item">
+                    🍎 Золотые яблоки
+                </div>
+
+                <div class="item">
+                    💎 ½ стака алмазов
+                </div>
+
+                <div class="item">
+                    🧪 64× зелья опыта
+                </div>
+
+                <div class="item">
+                    💨 32× Wind Charges
+                </div>
+
+                <div class="item">
+                    🧪 32× Splash Potions
+                </div>
+
+                <div class="item">
+                    ✨ Уникальные Armor Trims
+                </div>
+
             </div>
 
             <a
-                class="buy"
                 href="https://funpay.com/lots/offer?id=78168600"
                 target="_blank"
+                class="buy"
             >
-                Купить
+                🛒 КУПИТЬ DANIOSHA SET
             </a>
 
         </div>
 
 
-        <div class="product">
+        <!-- CURRENCY -->
 
-            <div class="product-icon">
+        <div class="card">
+
+            <div class="card-icon">
                 🪙
             </div>
 
+            <div class="subtitle">
+                Игровая валюта
+            </div>
+
             <h3>
-                1000 монет
+                Валюта DaniSMP
             </h3>
 
             <p>
-                Пополни баланс и используй
-                монеты в игровом магазине.
+                Нужны деньги для развития на сервере?
+                Пополняй баланс игровой валютой и покупай
+                необходимые предметы, ресурсы и возможности.
+                Быстрый способ ускорить свой прогресс
+                без долгого фарма.
             </p>
 
-            <div class="price">
-                1000 🪙
+            <div class="items">
+
+                <div class="item">
+                    🪙 Игровая валюта
+                </div>
+
+                <div class="item">
+                    ⚡ Быстрое получение
+                </div>
+
+                <div class="item">
+                    💰 Для развития
+                </div>
+
+                <div class="item">
+                    🛒 Удобная покупка
+                </div>
+
             </div>
 
             <a
-                class="buy"
                 href="https://funpay.com/lots/offer?id=78167287"
                 target="_blank"
+                class="buy"
             >
-                Купить
+                🪙 КУПИТЬ ИГРОВУЮ ВАЛЮТУ
             </a>
 
         </div>
@@ -1362,26 +768,127 @@ footer strong {
 
 </section>
 
-</main>
+
+<!-- ADVANTAGES -->
+
+<section id="advantages">
+
+    <div class="section-title">
+
+        <small>Почему DaniSMP?</small>
+
+        <h2>Создано для игроков</h2>
+
+        <p>
+            Забирай нужные ресурсы и возвращайся в игру
+        </p>
+
+    </div>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+    <div class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Быстро
+            </h3>
+
+            <p>
+                Покупай необходимые товары через FunPay
+                и не трать часы на самостоятельный фарм.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                💎
+            </div>
+
+            <h3>
+                Выгодный старт
+            </h3>
+
+            <p>
+                Получай готовое снаряжение и ресурсы,
+                чтобы быстрее перейти к интересной части игры.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Готов к приключениям
+            </h3>
+
+            <p>
+                Броня, инструменты, зелья и ресурсы —
+                всё необходимое для уверенного старта.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CTA -->
+
+    <div class="cta" id="buy">
+
+        <h2>
+            Готов прокачаться?
+        </h2>
+
+        <p>
+            Выбери нужный товар, перейди на FunPay
+            и начинай свой путь на DaniSMP.
+        </p>
+
+        <div class="buttons" style="justify-content:center;">
+
+            <a
+                href="https://funpay.com/lots/offer?id=78168600"
+                target="_blank"
+                class="btn btn-yellow"
+            >
+                💎 Daniosha Set
+            </a>
+
+            <a
+                href="https://funpay.com/lots/offer?id=78167287"
+                target="_blank"
+                class="btn btn-dark"
+            >
+                🪙 Игровая валюта
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 <footer>
 
-    © <span id="year"></span>
-    <strong>DaniSMP</strong>.
-    Minecraft Server.
+    © 2026 <span>DaniSMP</span> —
+    Minecraft Store
 
 </footer>
 
-
-<script>
-document.getElementById("year").textContent =
-    new Date().getFullYear();
-</script>
 
 </body>
 </html>
