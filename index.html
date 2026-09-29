@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,1490 +6,1382 @@
 
 <title>DaniSMP — Minecraft Server</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-:root{
-    --bg:#050611;
-    --bg2:#090b19;
-    --yellow:#ffd21c;
-    --yellow2:#ffed69;
-    --purple:#812cff;
-    --purple2:#b84dff;
-    --white:#ffffff;
-    --muted:#aeb3c7;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+html {
+    scroll-behavior: smooth;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Inter,Arial,sans-serif;
-    background:#050611;
-    color:white;
-    overflow-x:hidden;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #090611;
+    color: white;
+    overflow-x: hidden;
 }
 
 /* =========================
-   GLOBAL BACKGROUND
+   BACKGROUND
 ========================= */
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-5;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -5;
 
     background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(126,40,255,.22),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 70%,
-            rgba(255,210,28,.07),
-            transparent 25%
-        );
-
-    pointer-events:none;
+        radial-gradient(circle at 50% 15%, rgba(255, 151, 48, .25), transparent 25%),
+        radial-gradient(circle at 15% 45%, rgba(119, 53, 255, .3), transparent 30%),
+        radial-gradient(circle at 85% 55%, rgba(255, 122, 35, .22), transparent 30%),
+        linear-gradient(180deg, #160d2b 0%, #10091d 50%, #07040c 100%);
 }
 
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-4;
+/* stars */
 
+.stars,
+.stars::before,
+.stars::after {
+    position: fixed;
+    inset: 0;
+    content: "";
+    pointer-events: none;
+    z-index: -4;
+}
+
+.stars {
     background-image:
-        linear-gradient(
-            rgba(255,255,255,.018) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.018) 1px,
-            transparent 1px
-        );
-
-    background-size:60px 60px;
-    pointer-events:none;
+        radial-gradient(circle, white 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1px);
+    background-size: 110px 110px, 170px 170px;
+    opacity: .25;
 }
 
 /* =========================
-   HEADER
+   NAVBAR
 ========================= */
 
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:100;
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
 
-    background:rgba(4,6,15,.78);
-    backdrop-filter:blur(18px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    border-bottom:1px solid rgba(255,255,255,.07);
+    padding: 0 7%;
+
+    background: rgba(7, 4, 15, .65);
+    backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+
+    z-index: 100;
 }
 
-nav{
-    height:76px;
-    max-width:1250px;
-    margin:auto;
-
-    padding:0 25px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.logo {
+    font-size: 25px;
+    font-weight: 1000;
+    letter-spacing: -1px;
 }
 
-.logo{
-    color:white;
-    text-decoration:none;
-
-    font-size:24px;
-    font-weight:900;
+.logo span {
+    color: #ffb52e;
 }
 
-.logo-crown{
-    color:var(--yellow);
-    margin-right:7px;
-
-    text-shadow:
-        0 0 12px rgba(255,210,28,.8);
+.nav-links {
+    display: flex;
+    gap: 34px;
+    list-style: none;
 }
 
-.logo span{
-    color:var(--purple2);
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .25s;
 }
 
-.nav-links{
-    display:flex;
-    gap:35px;
-}
-
-.nav-links a{
-    color:#aeb2c4;
-    text-decoration:none;
-
-    font-size:13px;
-    font-weight:600;
-
-    transition:.25s;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-    color:var(--yellow);
-}
-
-.discord{
-    color:white;
-    text-decoration:none;
-
-    border:1px solid var(--purple);
-
-    padding:10px 18px;
-
-    border-radius:12px;
-
-    font-size:13px;
-    font-weight:800;
-
-    transition:.25s;
-}
-
-.discord:hover{
-    background:rgba(129,44,255,.15);
-
-    box-shadow:
-        0 0 25px rgba(129,44,255,.4);
-
-    transform:translateY(-2px);
+.nav-links a:hover {
+    color: #ffb52e;
 }
 
 /* =========================
    HERO
 ========================= */
 
-.hero{
-    min-height:100vh;
+.hero {
+    min-height: 850px;
+    position: relative;
 
-    position:relative;
+    display: flex;
+    align-items: center;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    padding: 100px 7% 80px;
 
-    text-align:center;
-
-    padding:
-        120px
-        20px
-        70px;
-
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(104,32,220,.25),
-            transparent 50%
-        ),
-        linear-gradient(
-            180deg,
-            #08091a 0%,
-            #050611 100%
-        );
+    overflow: hidden;
 }
 
-/* Fake Minecraft scenery */
+/* mountains */
 
-.hero::before{
-    content:"";
-
-    position:absolute;
-    left:-5%;
-    right:-5%;
-    bottom:-20px;
-
-    height:240px;
+.mountains {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
 
     background:
-        linear-gradient(
-            135deg,
-            transparent 25%,
-            #11152a 25%,
-            #11152a 55%,
-            transparent 55%
+        linear-gradient(135deg, transparent 50%, #100c17 51%) 0 100% / 30% 100%,
+        linear-gradient(225deg, transparent 50%, #151020 51%) 20% 100% / 35% 100%,
+        linear-gradient(135deg, transparent 50%, #0d0914 51%) 45% 100% / 35% 100%,
+        linear-gradient(225deg, transparent 50%, #130d1c 51%) 70% 100% / 35% 100%;
+
+    opacity: .8;
+}
+
+/* Minecraft ground */
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 95px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #171022 0 45px,
+            #1d1429 45px 90px
         );
 
-    opacity:.5;
-
-    filter:blur(1px);
-}
-
-.hero::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        radial-gradient(
-            circle at 18% 70%,
-            rgba(146,60,255,.25),
-            transparent 16%
-        ),
-        radial-gradient(
-            circle at 82% 65%,
-            rgba(255,210,28,.12),
-            transparent 18%
-        );
-
-    pointer-events:none;
-}
-
-.hero-content{
-    position:relative;
-    z-index:5;
-
-    max-width:900px;
-}
-
-.badge{
-    display:inline-flex;
-
-    align-items:center;
-    gap:8px;
-
-    padding:9px 18px;
-
-    border-radius:30px;
-
-    background:
-        rgba(20,12,42,.85);
-
-    border:1px solid
-        rgba(145,60,255,.5);
-
-    color:#ddd5ef;
-
-    font-size:11px;
-    font-weight:800;
-
-    letter-spacing:1px;
+    border-top: 7px solid #2b1d38;
 
     box-shadow:
-        0 0 25px
-        rgba(129,44,255,.18);
-
-    margin-bottom:27px;
+        0 -10px 40px rgba(0,0,0,.6);
 }
 
-.hero h1{
-    font-size:
-        clamp(
-            70px,
-            12vw,
-            150px
-        );
-
-    line-height:.85;
-
-    font-weight:900;
-
-    letter-spacing:-7px;
-
-    background:
-        linear-gradient(
-            105deg,
-            #ffd42b 0%,
-            #fff 35%,
-            #a842ff 70%,
-            #7024d7 100%
-        );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-
-    filter:
-        drop-shadow(
-            0 0 25px
-            rgba(255,210,28,.15)
-        )
-        drop-shadow(
-            0 0 45px
-            rgba(129,44,255,.3)
-        );
-
-    animation:logoGlow 4s infinite ease-in-out;
-}
-
-@keyframes logoGlow{
-
-    0%,100%{
-        filter:
-            drop-shadow(
-                0 0 22px
-                rgba(255,210,28,.15)
-            )
-            drop-shadow(
-                0 0 40px
-                rgba(129,44,255,.25)
-            );
-    }
-
-    50%{
-        filter:
-            drop-shadow(
-                0 0 35px
-                rgba(255,210,28,.3)
-            )
-            drop-shadow(
-                0 0 65px
-                rgba(129,44,255,.4)
-            );
-    }
-}
-
-.tagline{
-    margin-top:22px;
-
-    color:#e8d8f4;
-
-    font-size:10px;
-
-    font-weight:900;
-
-    letter-spacing:5px;
-}
-
-.hero p{
-    max-width:650px;
-
-    margin:
-        25px
-        auto
-        30px;
-
-    color:#c3c7d7;
-
-    font-size:15px;
-
-    line-height:1.8;
-}
-
-.buttons{
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-}
-
-.btn{
-    min-width:190px;
-
-    padding:15px 25px;
-
-    display:inline-flex;
-
-    justify-content:center;
-    align-items:center;
-
-    gap:9px;
-
-    border-radius:13px;
-
-    text-decoration:none;
-
-    font-size:13px;
-
-    font-weight:900;
-
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:
-        translateY(-4px);
-}
-
-.yellow{
-    color:#171207;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffe03b,
-            #ffb914
-        );
-
-    box-shadow:
-        0 0 30px
-        rgba(255,210,28,.3);
-}
-
-.yellow:hover{
-    box-shadow:
-        0 10px 40px
-        rgba(255,210,28,.45);
-}
-
-.purple{
-    color:white;
-
-    background:
-        rgba(14,9,30,.8);
-
-    border:
-        1px solid
-        var(--purple);
-
-    box-shadow:
-        0 0 25px
-        rgba(129,44,255,.15);
-}
-
-.purple:hover{
-    background:
-        rgba(129,44,255,.15);
-
-    box-shadow:
-        0 10px 40px
-        rgba(129,44,255,.3);
+.ground::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #46302c;
 }
 
 /* =========================
-   SECTION
+   HERO CHARACTER
 ========================= */
 
-section.content{
-    max-width:1250px;
+.character {
+    position: absolute;
+    left: 7%;
+    bottom: 90px;
 
-    margin:auto;
+    width: 280px;
+    height: 480px;
 
-    padding:
-        105px
-        25px;
+    z-index: 2;
+
+    filter:
+        drop-shadow(0 20px 30px rgba(0,0,0,.8))
+        drop-shadow(0 0 35px rgba(141,61,255,.25));
+
+    animation: float 4s ease-in-out infinite;
 }
 
-.section-label{
-    text-align:center;
+@keyframes float {
+    0%,100% {
+        transform: translateY(0);
+    }
 
-    color:#a6a8b8;
-
-    font-size:10px;
-
-    font-weight:900;
-
-    letter-spacing:4px;
-
-    margin-bottom:10px;
+    50% {
+        transform: translateY(-12px);
+    }
 }
 
-.section-label span{
-    color:var(--yellow);
+/* head */
+
+.head {
+    position: absolute;
+    top: 15px;
+    left: 80px;
+
+    width: 120px;
+    height: 120px;
+
+    background:
+        linear-gradient(90deg, #b86e43 0 15%, #d99060 15% 80%, #9e5738 80%);
+    
+    border: 8px solid #21172b;
+
+    box-shadow:
+        inset -15px -15px rgba(0,0,0,.15),
+        15px 20px 0 rgba(0,0,0,.25);
 }
 
-.section-title{
-    text-align:center;
+/* hair */
 
-    font-size:52px;
+.head::before {
+    content: "";
+    position: absolute;
 
-    font-weight:900;
+    left: -8px;
+    top: -8px;
 
-    letter-spacing:-2px;
+    width: 120px;
+    height: 45px;
 
-    margin-bottom:55px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #18121b 0 18px,
+            #241828 18px 30px
+        );
+
+    border-bottom: 8px solid #21172b;
 }
 
-.section-title span{
-    color:var(--purple2);
+/* eyes */
+
+.head::after {
+    content: "■   ■";
+
+    position: absolute;
+
+    left: 26px;
+    top: 58px;
+
+    color: #21152b;
+    font-size: 19px;
+    letter-spacing: 16px;
+}
+
+/* body */
+
+.body {
+    position: absolute;
+    top: 135px;
+    left: 55px;
+
+    width: 170px;
+    height: 170px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4929a8 0 20%,
+            #6d40d9 20% 80%,
+            #351b86 80%
+        );
+
+    border: 8px solid #21172b;
+}
+
+/* arms */
+
+.arm {
+    position: absolute;
+    top: 142px;
+
+    width: 55px;
+    height: 155px;
+
+    background: #5632bc;
+    border: 8px solid #21172b;
+}
+
+.arm.left {
+    left: 0;
+    transform: rotate(9deg);
+}
+
+.arm.right {
+    right: 0;
+    transform: rotate(-9deg);
+}
+
+/* legs */
+
+.leg {
+    position: absolute;
+    top: 295px;
+
+    width: 70px;
+    height: 170px;
+
+    background: #29213a;
+
+    border: 8px solid #21172b;
+}
+
+.leg.left {
+    left: 70px;
+}
+
+.leg.right {
+    left: 145px;
+}
+
+/* sword */
+
+.sword {
+    position: absolute;
+
+    right: -55px;
+    top: 150px;
+
+    width: 25px;
+    height: 230px;
+
+    background: linear-gradient(
+        90deg,
+        #c7e9ff,
+        #fff,
+        #7196b0
+    );
+
+    transform: rotate(-28deg);
+
+    box-shadow: 0 0 20px #8dd9ff;
+}
+
+.sword::before {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: -35px;
+
+    width: 90px;
+    height: 18px;
+
+    background: #b77a32;
+
+    box-shadow: 0 7px #49301a;
+}
+
+/* =========================
+   CASTLE
+========================= */
+
+.castle {
+    position: absolute;
+
+    right: 4%;
+    bottom: 80px;
+
+    width: 420px;
+    height: 370px;
+
+    z-index: 1;
+
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,.6));
+}
+
+.castle-main {
+    position: absolute;
+
+    left: 80px;
+    bottom: 0;
+
+    width: 260px;
+    height: 220px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #4b3d4f 0 20px,
+            #554558 20px 40px
+        );
+
+    border: 8px solid #211a27;
+}
+
+.tower {
+    position: absolute;
+    bottom: 0;
+
+    width: 100px;
+    height: 300px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #514453 0 22px,
+            #645363 22px 44px
+        );
+
+    border: 8px solid #211a27;
+}
+
+.tower.left {
+    left: 0;
+}
+
+.tower.right {
+    right: 0;
+}
+
+.roof {
+    position: absolute;
+
+    top: -75px;
+    left: -25px;
+
+    width: 130px;
+    height: 90px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #6c2b88 0 18px,
+            #8134a1 18px 36px
+        );
+
+    clip-path: polygon(50% 0,100% 100%,0 100%);
+
+    filter: drop-shadow(0 5px 0 #25132e);
+}
+
+.window {
+    position: absolute;
+
+    left: 30px;
+    top: 75px;
+
+    width: 35px;
+    height: 65px;
+
+    background: #ffb72f;
+
+    border: 6px solid #241a28;
+
+    box-shadow: 0 0 25px rgba(255,173,40,.7);
+}
+
+.window.two {
+    top: 180px;
+}
+
+.gate {
+    position: absolute;
+
+    left: 105px;
+    bottom: 0;
+
+    width: 70px;
+    height: 125px;
+
+    background: #17121c;
+
+    border: 8px solid #211a27;
+
+    border-radius: 45px 45px 0 0;
+}
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+    position: relative;
+
+    width: 100%;
+    text-align: center;
+
+    z-index: 5;
+
+    margin-top: 20px;
+}
+
+.small-title {
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border: 1px solid rgba(255,188,48,.4);
+    border-radius: 100px;
+
+    color: #ffbd3e;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    background: rgba(255,175,40,.07);
+
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    margin-top: 18px;
+
+    font-size: clamp(75px, 12vw, 170px);
+
+    line-height: .85;
+
+    font-weight: 1000;
+    letter-spacing: -8px;
+
+    color: white;
+
+    text-shadow:
+        0 7px 0 #3c2355,
+        0 14px 35px rgba(0,0,0,.8);
+}
+
+.hero h1 span {
+    color: #ffb72e;
+
+    text-shadow:
+        0 5px 0 #8d4b17,
+        0 12px 35px rgba(255,155,25,.3);
+}
+
+.hero-description {
+    max-width: 650px;
+
+    margin: 28px auto;
+
+    color: #c8c1d0;
+
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 180px;
+
+    padding: 16px 25px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    transition: .25s;
+}
+
+.btn-primary {
+    color: #201204;
+
+    background: linear-gradient(
+        135deg,
+        #ffd15a,
+        #ff9f20
+    );
+
+    box-shadow:
+        0 8px 30px rgba(255,160,35,.3);
+}
+
+.btn-secondary {
+    color: white;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    background: rgba(255,255,255,.07);
+
+    backdrop-filter: blur(10px);
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding: 110px 7%;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.section-title .label {
+    color: #ffb52e;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.section-title h2 {
+    margin-top: 10px;
+
+    font-size: clamp(38px, 5vw, 65px);
+
+    font-weight: 1000;
+}
+
+.section-title p {
+    max-width: 650px;
+    margin: 15px auto;
+
+    color: #aaa2b5;
 }
 
 /* =========================
    CARDS
 ========================= */
 
-.cards{
-    display:grid;
+.cards {
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        repeat(3, 1fr);
 
-    gap:18px;
+    gap: 22px;
 }
 
-.card{
-    min-height:285px;
+.card {
+    padding: 35px;
 
-    position:relative;
+    min-height: 230px;
 
-    padding:30px 25px;
-
-    overflow:hidden;
-
-    border-radius:20px;
+    border-radius: 22px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(20,24,44,.95),
-            rgba(7,10,20,.97)
+            rgba(121,69,194,.16),
+            rgba(255,255,255,.025)
         );
 
-    border:
-        1px solid
-        rgba(255,255,255,.09);
-
-    transition:.35s;
-}
-
-.card::before{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    top:0;
-
-    height:2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--purple),
-            transparent
-        );
-}
-
-.card:hover{
-    transform:
-        translateY(-9px);
-
-    border-color:
-        rgba(129,44,255,.65);
+    border: 1px solid rgba(255,255,255,.08);
 
     box-shadow:
-        0 25px 60px
-        rgba(0,0,0,.4),
+        inset 0 1px rgba(255,255,255,.06),
+        0 20px 50px rgba(0,0,0,.2);
 
-        0 0 30px
-        rgba(129,44,255,.08);
+    transition: .3s;
 }
 
-.card-icon{
-    width:68px;
-    height:68px;
+.card:hover {
+    transform: translateY(-8px);
 
-    display:flex;
+    border-color: rgba(255,181,46,.35);
 
-    align-items:center;
-    justify-content:center;
-
-    border-radius:17px;
-
-    font-size:36px;
-
-    margin-bottom:24px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(129,44,255,.18),
-            rgba(255,210,28,.07)
-        );
-
-    border:
-        1px solid
-        rgba(129,44,255,.25);
+    box-shadow:
+        0 20px 60px rgba(126,54,255,.2);
 }
 
-.card h3{
-    font-size:18px;
+.card-icon {
+    width: 55px;
+    height: 55px;
 
-    margin-bottom:13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    font-size: 25px;
+
+    background: rgba(255,181,46,.12);
+
+    border: 1px solid rgba(255,181,46,.2);
+
+    margin-bottom: 25px;
 }
 
-.card:nth-child(odd) h3{
-    color:var(--purple2);
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
 }
 
-.card:nth-child(even) h3{
-    color:var(--yellow);
-}
-
-.card p{
-    color:var(--muted);
-
-    font-size:13px;
-
-    line-height:1.8;
-}
-
-.arrow{
-    position:absolute;
-
-    bottom:20px;
-    right:23px;
-
-    color:var(--yellow);
-
-    font-size:21px;
-
-    transition:.25s;
-}
-
-.card:hover .arrow{
-    transform:
-        translateX(6px);
+.card p {
+    color: #a9a2b0;
+    line-height: 1.6;
 }
 
 /* =========================
-   CREATOR
+   DANIOSHA
 ========================= */
 
-.creator-section{
-    position:relative;
+.creator {
+    max-width: 1200px;
+    margin: auto;
 
-    overflow:hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
 
-    padding:
-        100px
-        25px;
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #25113f,
+            #120b1c
+        );
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.35);
+}
+
+.creator-image {
+    min-height: 360px;
+
+    position: relative;
 
     background:
         radial-gradient(
-            circle at 25% 50%,
-            rgba(129,44,255,.25),
-            transparent 32%
+            circle at center,
+            rgba(161,78,255,.5),
+            transparent 60%
         ),
         linear-gradient(
-            90deg,
-            #070917,
-            #0b0d1e,
-            #070917
+            135deg,
+            #38165e,
+            #140b22
         );
 
-    border-top:
-        1px solid
-        rgba(255,255,255,.06);
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.creator-section::before{
-    content:"🎮";
-
-    position:absolute;
-
-    left:8%;
-
-    top:50%;
-
-    transform:
-        translateY(-50%)
-        rotate(-8deg);
-
-    font-size:180px;
-
-    opacity:.08;
-
-    filter:
-        drop-shadow(
-            0 0 30px
-            var(--purple)
-        );
-}
-
-.creator-section::after{
-    content:"👑";
-
-    position:absolute;
-
-    right:8%;
-
-    top:50%;
-
-    transform:
-        translateY(-50%)
-        rotate(8deg);
-
-    font-size:150px;
-
-    opacity:.07;
-}
-
-.creator{
-    max-width:950px;
-
-    margin:auto;
-
-    position:relative;
-
-    z-index:2;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:60px;
-}
-
-.creator-avatar{
-    width:230px;
-    height:230px;
-
-    flex-shrink:0;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    font-size:95px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(129,44,255,.4),
-            rgba(7,8,23,.9) 68%
-        );
-
-    border:
-        1px solid
-        rgba(129,44,255,.55);
-
-    box-shadow:
-        0 0 70px
-        rgba(129,44,255,.25);
-
-    animation:
-        avatarFloat 4s
-        ease-in-out
-        infinite;
-}
-
-@keyframes avatarFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-10px);
-    }
-}
-
-.creator-label{
-    color:var(--purple2);
-
-    font-size:10px;
-
-    font-weight:900;
-
-    letter-spacing:4px;
-}
-
-.creator-name{
-    font-size:60px;
-
-    font-weight:900;
-
-    margin:
-        8px
-        0
-        14px;
-}
-
-.creator-name span{
-    color:var(--purple2);
-}
-
-.creator-text{
-    max-width:550px;
-
-    color:var(--muted);
-
-    font-size:14px;
-
-    line-height:1.8;
-
-    margin-bottom:25px;
-}
-
-/* =========================
-   COINS
-========================= */
-
-.coin-box{
-    max-width:950px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-        38%
-        62%;
-
-    border-radius:23px;
-
-    overflow:hidden;
+.creator-avatar {
+    width: 170px;
+    height: 170px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(20,24,43,.98),
-            rgba(7,9,18,.98)
+            #8153dc,
+            #ffb32f
         );
 
-    border:
-        1px solid
-        rgba(255,210,28,.5);
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 70px;
 
     box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.35);
+        0 20px 70px rgba(150,70,255,.35);
 }
 
-.coin-art{
-    min-height:320px;
+.creator-info {
+    padding: 55px;
+}
 
-    display:flex;
+.creator-info .tag {
+    color: #ffb52e;
 
-    align-items:center;
+    font-weight: 900;
 
-    justify-content:center;
+    letter-spacing: 3px;
+    font-size: 12px;
+}
 
-    position:relative;
+.creator-info h2 {
+    margin: 15px 0;
+
+    font-size: 50px;
+}
+
+.creator-info p {
+    color: #aaa4b1;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+/* =========================
+   SHOP
+========================= */
+
+.shop {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+.product {
+    padding: 35px;
+
+    border-radius: 24px;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(255,210,28,.2),
-            transparent 60%
-        );
-}
-
-.coin-art::before{
-    content:"🪙";
-
-    font-size:125px;
-
-    filter:
-        drop-shadow(
-            0 0 30px
-            rgba(255,210,28,.6)
+        linear-gradient(
+            145deg,
+            rgba(255,179,46,.09),
+            rgba(110,54,190,.12)
         );
 
-    animation:
-        coinFloat 3s
-        ease-in-out
-        infinite;
+    border: 1px solid rgba(255,255,255,.09);
+
+    position: relative;
+
+    overflow: hidden;
 }
 
-.coin-art::after{
-    content:"💰";
+.product::after {
+    content: "DaniSMP";
 
-    position:absolute;
+    position: absolute;
 
-    font-size:75px;
+    right: -20px;
+    bottom: -35px;
 
-    right:30px;
+    font-size: 70px;
 
-    bottom:35px;
+    font-weight: 1000;
 
-    filter:
-        drop-shadow(
-            0 0 20px
-            rgba(255,210,28,.4)
-        );
+    color: rgba(255,255,255,.025);
 }
 
-@keyframes coinFloat{
-
-    0%,100%{
-        transform:
-            translateY(0)
-            rotate(-3deg);
-    }
-
-    50%{
-        transform:
-            translateY(-15px)
-            rotate(3deg);
-    }
+.product-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
 }
 
-.coin-content{
-    padding:48px;
+.product h3 {
+    font-size: 25px;
 }
 
-.coin-content h2{
-    font-size:32px;
-
-    margin-bottom:15px;
+.product p {
+    color: #a8a1ae;
+    margin: 12px 0 25px;
+    line-height: 1.6;
 }
 
-.coin-content h2 span{
-    color:var(--purple2);
+.price {
+    font-size: 30px;
+    font-weight: 1000;
+    color: #ffbd3f;
+
+    margin-bottom: 20px;
 }
 
-.coin-content p{
-    max-width:480px;
+.buy {
+    display: inline-block;
 
-    color:var(--muted);
+    padding: 13px 23px;
 
-    font-size:14px;
+    border-radius: 10px;
 
-    line-height:1.8;
+    color: #1d1204;
+
+    background: #ffb52e;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    transition: .2s;
 }
 
-.price{
-    display:inline-flex;
-
-    margin:
-        25px
-        0;
-
-    padding:
-        9px
-        19px;
-
-    border-radius:12px;
-
-    border:
-        1px solid
-        rgba(255,210,28,.5);
-
-    background:
-        rgba(255,210,28,.05);
-
-    color:var(--yellow);
-
-    font-size:26px;
-
-    font-weight:900;
+.buy:hover {
+    transform: translateY(-3px);
 }
 
 /* =========================
    FOOTER
 ========================= */
 
-footer{
-    padding:32px 25px;
+footer {
+    padding: 50px 7%;
 
-    border-top:
-        1px solid
-        rgba(255,255,255,.07);
+    border-top: 1px solid rgba(255,255,255,.07);
 
-    color:#73798e;
+    text-align: center;
 
-    font-size:12px;
+    color: #77717e;
+
+    background: rgba(0,0,0,.2);
 }
 
-.footer{
-    max-width:1250px;
-
-    margin:auto;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-}
-
-.footer strong{
-    color:var(--yellow);
+footer strong {
+    color: #ffb52e;
 }
 
 /* =========================
-   MOBILE
+   RESPONSIVE
 ========================= */
 
-@media(max-width:900px){
+@media(max-width: 950px) {
 
-    .nav-links{
-        display:none;
+    .nav-links {
+        display: none;
     }
 
-    .cards{
-        grid-template-columns:
-            repeat(2,1fr);
+    .hero {
+        min-height: 760px;
     }
 
-    .creator{
-        flex-direction:column;
-
-        text-align:center;
+    .character {
+        opacity: .35;
+        left: -70px;
     }
 
-    .creator-text{
-        margin-left:auto;
-        margin-right:auto;
+    .castle {
+        opacity: .35;
+        right: -100px;
     }
 
-    .coin-box{
-        grid-template-columns:1fr;
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .creator {
+        grid-template-columns: 1fr;
+    }
+
+    .shop {
+        grid-template-columns: 1fr;
     }
 }
 
-@media(max-width:600px){
+@media(max-width: 600px) {
 
-    nav{
-        height:66px;
+    .hero {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    .discord{
-        display:none;
+    .hero h1 {
+        font-size: 70px;
+        letter-spacing: -5px;
     }
 
-    .hero{
-        min-height:720px;
+    .hero-description {
+        font-size: 15px;
     }
 
-    .hero h1{
-        font-size:65px;
-
-        letter-spacing:-4px;
+    section {
+        padding: 80px 20px;
     }
 
-    .tagline{
-        font-size:8px;
-
-        letter-spacing:3px;
+    .creator-info {
+        padding: 35px 25px;
     }
 
-    .hero p{
-        font-size:14px;
-    }
-
-    .buttons{
-        flex-direction:column;
-
-        align-items:center;
-    }
-
-    .btn{
-        width:100%;
-
-        max-width:290px;
-    }
-
-    section.content{
-        padding:
-            75px
-            18px;
-    }
-
-    .section-title{
-        font-size:38px;
-    }
-
-    .cards{
-        grid-template-columns:1fr;
-    }
-
-    .creator-section{
-        padding:
-            75px
-            18px;
-    }
-
-    .creator-avatar{
-        width:180px;
-        height:180px;
-
-        font-size:70px;
-    }
-
-    .creator-name{
-        font-size:43px;
-    }
-
-    .coin-content{
-        padding:30px 24px;
-    }
-
-    .footer{
-        flex-direction:column;
-
-        gap:10px;
-
-        text-align:center;
+    .creator-info h2 {
+        font-size: 38px;
     }
 }
 </style>
 </head>
 
-
 <body>
 
-<!-- HEADER -->
+<div class="stars"></div>
 
-<header>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-<nav>
+<header class="navbar">
 
-<a href="#" class="logo">
-    <span class="logo-crown">♛</span>
-    Dani<span>SMP</span>
-</a>
+    <div class="logo">
+        Dani<span>SMP</span>
+    </div>
 
-<div class="nav-links">
-
-<a href="#" class="active">
-    Главная
-</a>
-
-<a href="#about">
-    О сервере
-</a>
-
-<a href="#creator">
-    Daniosha
-</a>
-
-<a href="#coins">
-    Монеты
-</a>
-
-</div>
-
-<a href="#" class="discord">
-    💬 Discord
-</a>
-
-</nav>
+    <ul class="nav-links">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#about">О сервере</a></li>
+        <li><a href="#creator">Daniosha</a></li>
+        <li><a href="#shop">Магазин</a></li>
+    </ul>
 
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
-<section class="hero">
+<main>
 
-<div class="hero-content">
+<section class="hero" id="home">
 
-<div class="badge">
-    🟩 MINECRAFT SMP
-</div>
+    <div class="mountains"></div>
 
-<h1>
-    DaniSMP
-</h1>
+    <div class="character">
 
-<div class="tagline">
-    ВЫЖИВАНИЕ • РАЗВИТИЕ • СООБЩЕСТВО
-</div>
+        <div class="head"></div>
 
-<p>
-    Добро пожаловать на DaniSMP!
-    Играй с друзьями, развивайся,
-    зарабатывай монеты и становись
-    частью нашего Minecraft-сообщества.
-</p>
+        <div class="body"></div>
 
-<div class="buttons">
+        <div class="arm left"></div>
+        <div class="arm right"></div>
 
-<a
-    class="btn yellow"
-    href="#coins"
->
-    🪙 Купить монеты →
-</a>
+        <div class="leg left"></div>
+        <div class="leg right"></div>
 
-<a
-    class="btn purple"
-    href="#creator"
->
-    🎥 Daniosha →
-</a>
+        <div class="sword"></div>
 
-</div>
-
-</div>
-
-</section>
+    </div>
 
 
-<!-- ABOUT -->
+    <div class="castle">
 
-<section
-    id="about"
-    class="content"
->
+        <div class="castle-main">
 
-<div class="section-label">
-    <span>◆</span>
-    ПОЧЕМУ
-    <span>◆</span>
-</div>
+            <div class="gate"></div>
 
-<h2 class="section-title">
-    <span>Dani</span>SMP?
-</h2>
+            <div class="window"></div>
+            <div class="window two"></div>
 
+        </div>
 
-<div class="cards">
+        <div class="tower left">
+            <div class="roof"></div>
+            <div class="window"></div>
+        </div>
 
+        <div class="tower right">
+            <div class="roof"></div>
+            <div class="window"></div>
+        </div>
 
-<div class="card">
-
-<div class="card-icon">
-    🌎
-</div>
-
-<h3>
-    Уникальный мир
-</h3>
-
-<p>
-    Исследуй мир, строй базы,
-    создавай города и развивайся
-    вместе с другими игроками.
-</p>
-
-<div class="arrow">
-    →
-</div>
-
-</div>
+    </div>
 
 
-<div class="card">
+    <div class="hero-content">
 
-<div class="card-icon">
-    ⚔️
-</div>
+        <div class="small-title">
+            MINECRAFT SURVIVAL SERVER
+        </div>
 
-<h3>
-    Приключения
-</h3>
+        <h1>
+            Dani<span>SMP</span>
+        </h1>
 
-<p>
-    Сражайся, проходи испытания
-    и участвуй в событиях DaniSMP.
-</p>
+        <p class="hero-description">
+            Добро пожаловать на DaniSMP — место, где начинаются
+            новые приключения, строятся огромные города и создаются
+            легендарные истории.
+        </p>
 
-<div class="arrow">
-    →
-</div>
+        <div class="buttons">
 
-</div>
+            <a
+                href="#shop"
+                class="btn btn-primary"
+            >
+                🛒 Открыть магазин
+            </a>
 
+            <a
+                href="#about"
+                class="btn btn-secondary"
+            >
+                Узнать больше →
+            </a>
 
-<div class="card">
+        </div>
 
-<div class="card-icon">
-    💰
-</div>
-
-<h3>
-    Экономика
-</h3>
-
-<p>
-    Торгуй с игроками,
-    зарабатывай игровую валюту
-    и развивай свою базу.
-</p>
-
-<div class="arrow">
-    →
-</div>
-
-</div>
+    </div>
 
 
-<div class="card">
-
-<div class="card-icon">
-    👑
-</div>
-
-<h3>
-    Сообщество
-</h3>
-
-<p>
-    Играй вместе с друзьями,
-    создавай команды и становись
-    частью DaniSMP.
-</p>
-
-<div class="arrow">
-    →
-</div>
-
-</div>
-
-
-</div>
+    <div class="ground"></div>
 
 </section>
 
 
-<!-- CREATOR -->
+<!-- =========================
+     ABOUT
+========================= -->
 
-<section
-    id="creator"
-    class="creator-section"
->
+<section id="about">
 
-<div class="creator">
+    <div class="section-title">
 
-<div class="creator-avatar">
-    🎮
-</div>
+        <div class="label">
+            DANI SMP
+        </div>
 
-<div>
+        <h2>
+            Добро пожаловать
+        </h2>
 
-<div class="creator-label">
-    НАШ СОЗДАТЕЛЬ
-</div>
+        <p>
+            Всё необходимое для комфортной игры
+            на нашем Minecraft сервере.
+        </p>
 
-<div class="creator-name">
-    Dani<span>osha</span> 👑
-</div>
-
-<p class="creator-text">
-    Daniosha — стример и создатель
-    контента, связанный с DaniSMP.
-    Следи за его контентом и
-    приключениями на сервере.
-</p>
-
-<a
-    class="btn yellow"
-    href="https://funpay.com/lots/offer?id=78168600"
-    target="_blank"
-    rel="noopener noreferrer"
->
-    🔗 Перейти к Daniosha →
-</a>
-
-</div>
-
-</div>
-
-</section>
+    </div>
 
 
-<!-- COINS -->
+    <div class="cards">
 
-<section
-    id="coins"
-    class="content"
->
+        <div class="card">
 
-<div class="section-label">
-    <span>◆</span>
-    ИГРОВЫЕ
-    <span>◆</span>
-</div>
+            <div class="card-icon">
+                ⚔️
+            </div>
 
-<h2 class="section-title">
-    <span>Монеты</span>
-</h2>
+            <h3>
+                Выживание
+            </h3>
 
+            <p>
+                Исследуй мир, добывай ресурсы,
+                строй базу и развивай своего персонажа.
+            </p>
 
-<div class="coin-box">
-
-
-<div class="coin-art">
-</div>
+        </div>
 
 
-<div class="coin-content">
+        <div class="card">
 
-<h2>
-    1000 <span>монет</span>
-</h2>
+            <div class="card-icon">
+                🏰
+            </div>
 
-<p>
-    Пополни свой игровой баланс
-    и используй монеты для покупок
-    и развития на DaniSMP.
-</p>
+            <h3>
+                Большой мир
+            </h3>
 
-<div class="price">
-    🪙 1000
-</div>
+            <p>
+                Огромный Minecraft-мир,
+                наполненный приключениями и секретами.
+            </p>
 
-<br>
+        </div>
 
-<a
-    class="btn yellow"
-    href="https://funpay.com/lots/offer?id=78167287"
-    target="_blank"
-    rel="noopener noreferrer"
->
-    🛒 Купить 1000 монет →
-</a>
 
-</div>
+        <div class="card">
 
-</div>
+            <div class="card-icon">
+                👑
+            </div>
+
+            <h3>
+                Своя история
+            </h3>
+
+            <p>
+                Создавай собственную историю
+                вместе с другими игроками сервера.
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     CREATOR
+========================= -->
+
+<section id="creator">
+
+    <div class="section-title">
+
+        <div class="label">
+            CREATOR
+        </div>
+
+        <h2>
+            Daniosha
+        </h2>
+
+    </div>
+
+
+    <div class="creator">
+
+        <div class="creator-image">
+
+            <div class="creator-avatar">
+                👑
+            </div>
+
+        </div>
+
+
+        <div class="creator-info">
+
+            <div class="tag">
+                SERVER CREATOR
+            </div>
+
+            <h2>
+                Daniosha
+            </h2>
+
+            <p>
+                Создатель DaniSMP и человек,
+                который стоит за развитием проекта.
+                Поддержи сервер и получи эксклюзивные
+                возможности в игре.
+            </p>
+
+            <a
+                class="btn btn-primary"
+                href="https://funpay.com/lots/offer?id=78168600"
+                target="_blank"
+            >
+                Купить Daniosha
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SHOP
+========================= -->
+
+<section id="shop">
+
+    <div class="section-title">
+
+        <div class="label">
+            SHOP
+        </div>
+
+        <h2>
+            Магазин DaniSMP
+        </h2>
+
+        <p>
+            Поддержи сервер и получи игровые предметы.
+        </p>
+
+    </div>
+
+
+    <div class="shop">
+
+        <div class="product">
+
+            <div class="product-icon">
+                👑
+            </div>
+
+            <h3>
+                Daniosha
+            </h3>
+
+            <p>
+                Эксклюзивный игровой товар
+                для игроков DaniSMP.
+            </p>
+
+            <div class="price">
+                FunPay
+            </div>
+
+            <a
+                class="buy"
+                href="https://funpay.com/lots/offer?id=78168600"
+                target="_blank"
+            >
+                Купить
+            </a>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-icon">
+                🪙
+            </div>
+
+            <h3>
+                1000 монет
+            </h3>
+
+            <p>
+                Пополни баланс и используй
+                монеты в игровом магазине.
+            </p>
+
+            <div class="price">
+                1000 🪙
+            </div>
+
+            <a
+                class="buy"
+                href="https://funpay.com/lots/offer?id=78167287"
+                target="_blank"
+            >
+                Купить
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-<div class="footer">
-
-<div>
     © <span id="year"></span>
-    <strong>DaniSMP</strong>
-    — Minecraft Server
-</div>
-
-<div>
-    Сделано для нашего сообщества 👑
-</div>
-
-</div>
+    <strong>DaniSMP</strong>.
+    Minecraft Server.
 
 </footer>
 
 
 <script>
-
 document.getElementById("year").textContent =
     new Date().getFullYear();
-
 </script>
 
 </body>
 </html>
-```
-
-
