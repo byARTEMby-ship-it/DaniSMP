@@ -1,141 +1,237 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>DaniSMP — Minecraft Store</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+
 
 <style>
 
+/* =========================================================
+   ОСНОВНЫЕ НАСТРОЙКИ
+========================================================= */
+
 :root {
+
     --gold: #ffc400;
     --gold-light: #ffdf4d;
+
     --black: #050607;
+
     --panel: #0d0f10;
+
     --gray: #a5a5a5;
+
+    --discord: #5865F2;
+
 }
+
 
 * {
+
     margin: 0;
     padding: 0;
+
     box-sizing: border-box;
+
 }
+
 
 html {
+
     scroll-behavior: smooth;
+
 }
 
+
 body {
-    font-family: "Montserrat", Arial, sans-serif;
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
     color: white;
+
     background:
+
         radial-gradient(
             circle at 75% 20%,
             rgba(255,196,0,.15),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 15% 70%,
             rgba(100,0,180,.12),
             transparent 25%
         ),
-        linear-gradient(#070809, #020303);
+
+        linear-gradient(
+            #070809,
+            #020303
+        );
 
     overflow-x: hidden;
+
 }
 
-/* ===== GRID BACKGROUND ===== */
+
+/* Фоновая сетка */
 
 body::before {
+
     content: "";
+
     position: fixed;
+
     inset: 0;
+
     pointer-events: none;
-    opacity: .08;
+
+    opacity: .07;
 
     background-image:
+
         linear-gradient(
             90deg,
             rgba(255,255,255,.08) 1px,
             transparent 1px
         ),
+
         linear-gradient(
             rgba(255,255,255,.08) 1px,
             transparent 1px
         );
 
     background-size: 48px 48px;
+
 }
 
-/* ===== HEADER ===== */
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 header {
+
     position: fixed;
+
     top: 0;
     left: 0;
     right: 0;
 
     z-index: 100;
 
-    background: rgba(3,4,5,.8);
-    backdrop-filter: blur(15px);
+    background:
+        rgba(3,4,5,.82);
 
-    border-bottom: 1px solid rgba(255,196,0,.2);
+    backdrop-filter:
+        blur(15px);
+
+    border-bottom:
+        1px solid
+        rgba(255,196,0,.2);
+
 }
 
+
 .navbar {
+
     max-width: 1250px;
+
     margin: auto;
 
     padding: 16px 25px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
+
 }
+
 
 .logo {
+
     font-size: 27px;
+
     font-weight: 900;
+
     letter-spacing: -1px;
+
 }
+
 
 .logo span {
-    color: var(--gold);
+
+    color:
+        var(--gold);
+
 }
+
 
 nav {
+
     display: flex;
-    gap: 30px;
+
+    gap: 28px;
+
 }
 
+
 nav a {
+
     color: #aaa;
+
     text-decoration: none;
 
     font-size: 12px;
+
     font-weight: 800;
 
     transition: .25s;
+
 }
+
 
 nav a:hover {
-    color: var(--gold);
+
+    color:
+        var(--gold);
+
 }
 
-/* ===== BUTTONS ===== */
+
+/* =========================================================
+   КНОПКИ
+========================================================= */
 
 .btn {
+
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 8px;
@@ -147,53 +243,119 @@ nav a:hover {
     text-decoration: none;
 
     font-size: 13px;
+
     font-weight: 900;
 
     transition: .25s;
+
 }
+
 
 .btn-gold {
-    background: var(--gold);
-    color: #080808;
+
+    background:
+        var(--gold);
+
+    color:
+        #080808;
 
     box-shadow:
-        0 10px 35px rgba(255,196,0,.15);
+        0 10px 35px
+        rgba(255,196,0,.15);
+
 }
+
 
 .btn-gold:hover {
-    background: var(--gold-light);
 
-    transform: translateY(-3px);
+    background:
+        var(--gold-light);
+
+    transform:
+        translateY(-3px);
 
     box-shadow:
-        0 15px 40px rgba(255,196,0,.3);
+        0 15px 40px
+        rgba(255,196,0,.3);
+
 }
+
 
 .btn-dark {
-    background: rgba(0,0,0,.5);
 
-    color: white;
+    background:
+        rgba(0,0,0,.5);
 
-    border: 1px solid rgba(255,196,0,.55);
+    color:
+        white;
+
+    border:
+        1px solid
+        rgba(255,196,0,.55);
+
 }
+
 
 .btn-dark:hover {
-    background: rgba(255,196,0,.1);
 
-    transform: translateY(-3px);
+    background:
+        rgba(255,196,0,.1);
+
+    transform:
+        translateY(-3px);
+
 }
 
-/* ===== HERO ===== */
+
+/* Discord */
+
+.btn-discord {
+
+    background:
+        var(--discord);
+
+    color:
+        white;
+
+    box-shadow:
+        0 10px 30px
+        rgba(88,101,242,.2);
+
+}
+
+
+.btn-discord:hover {
+
+    background:
+        #6d78ff;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(88,101,242,.4);
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
+
     min-height: 800px;
 
-    padding: 150px 25px 80px;
+    padding:
+        150px 25px 80px;
 
     position: relative;
+
     overflow: hidden;
 
     background:
+
         radial-gradient(
             circle at 80% 45%,
             rgba(255,196,0,.15),
@@ -207,163 +369,298 @@ nav a:hover {
             rgba(5,6,6,.4) 75%,
             #050606 100%
         );
+
 }
 
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 0;
+
+    height: 160px;
+
+    background:
+        linear-gradient(
+            transparent,
+            #050607
+        );
+
+    pointer-events: none;
+
+}
+
+
 .hero-content {
+
     max-width: 1250px;
 
     margin: auto;
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 30px;
 
     align-items: center;
-}
 
-.kicker {
-    color: var(--gold);
-
-    font-size: 13px;
-    font-weight: 900;
-
-    text-transform: uppercase;
-
-    letter-spacing: .7px;
-}
-
-.hero h1 {
-    font-size: clamp(48px, 6vw, 82px);
-
-    line-height: .93;
-
-    margin: 22px 0;
-
-    font-weight: 900;
-
-    letter-spacing: -4px;
-}
-
-.hero h1 span {
-    color: var(--gold);
-
-    text-shadow:
-        0 0 35px rgba(255,196,0,.25);
-}
-
-.hero-text {
-    max-width: 590px;
-
-    color: #c3c3c3;
-
-    line-height: 1.7;
-
-    font-size: 16px;
-}
-
-.buttons {
-    display: flex;
-
-    gap: 14px;
-
-    flex-wrap: wrap;
-
-    margin-top: 32px;
-}
-
-/* ===== BADGES ===== */
-
-.badges {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 10px;
-
-    margin-top: 35px;
-
-    max-width: 650px;
-}
-
-.badge {
-    padding: 15px 12px;
-
-    border: 1px solid #292b2d;
-
-    background: rgba(0,0,0,.42);
-
-    border-radius: 8px;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-.badge b {
-    display: block;
-
-    color: var(--gold);
-
-    margin-bottom: 5px;
-}
-
-/* ===== HERO ART ===== */
-
-.hero-art {
     position: relative;
 
-    min-height: 520px;
+    z-index: 2;
+
 }
 
+
+.kicker {
+
+    color:
+        var(--gold);
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .7px;
+
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(
+            48px,
+            6vw,
+            82px
+        );
+
+    line-height:
+        .93;
+
+    margin:
+        22px 0;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -4px;
+
+}
+
+
+.hero h1 span {
+
+    color:
+        var(--gold);
+
+    text-shadow:
+        0 0 35px
+        rgba(255,196,0,.25);
+
+}
+
+
+.hero-text {
+
+    max-width:
+        590px;
+
+    color:
+        #c3c3c3;
+
+    line-height:
+        1.7;
+
+    font-size:
+        16px;
+
+}
+
+
+.buttons {
+
+    display:
+        flex;
+
+    gap:
+        14px;
+
+    flex-wrap:
+        wrap;
+
+    margin-top:
+        32px;
+
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.badges {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        10px;
+
+    margin-top:
+        35px;
+
+    max-width:
+        650px;
+
+}
+
+
+.badge {
+
+    padding:
+        15px 12px;
+
+    border:
+        1px solid #292b2d;
+
+    background:
+        rgba(0,0,0,.42);
+
+    border-radius:
+        8px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+}
+
+
+.badge b {
+
+    display:
+        block;
+
+    color:
+        var(--gold);
+
+    margin-bottom:
+        5px;
+
+}
+
+
+/* =========================================================
+   HERO MINECRAFT CHARACTER
+========================================================= */
+
+.hero-art {
+
+    position:
+        relative;
+
+    min-height:
+        520px;
+
+}
+
+
 .hero-art::before {
+
     content: "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    width: 430px;
-    height: 430px;
+    width:
+        430px;
 
-    border-radius: 50%;
+    height:
+        430px;
+
+    border-radius:
+        50%;
 
     background:
         rgba(255,196,0,.14);
 
-    filter: blur(90px);
+    filter:
+        blur(90px);
 
-    right: 12%;
-    top: 15%;
+    right:
+        12%;
+
+    top:
+        15%;
+
 }
 
-/* Minecraft-style character */
+
+/* Персонаж */
 
 .character {
-    position: absolute;
 
-    right: 8%;
-    top: 7%;
+    position:
+        absolute;
 
-    width: 370px;
-    height: 470px;
+    right:
+        8%;
 
-    transform: rotate(-3deg);
+    top:
+        7%;
+
+    width:
+        370px;
+
+    height:
+        470px;
+
+    transform:
+        rotate(-3deg);
 
     filter:
         drop-shadow(
-            0 25px 35px rgba(0,0,0,.8)
+            0 25px 35px
+            rgba(0,0,0,.8)
         );
+
 }
 
+
 .character-head {
-    position: absolute;
 
-    left: 110px;
-    top: 5px;
+    position:
+        absolute;
 
-    width: 150px;
-    height: 135px;
+    left:
+        110px;
+
+    top:
+        5px;
+
+    width:
+        150px;
+
+    height:
+        135px;
 
     background:
         linear-gradient(
@@ -373,19 +670,31 @@ nav a:hover {
             #754724 80%
         );
 
-    border: 9px solid #24170d;
+    border:
+        9px solid #24170d;
+
 }
 
+
 .character-hair {
-    position: absolute;
 
-    left: 105px;
-    top: -7px;
+    position:
+        absolute;
 
-    width: 160px;
-    height: 48px;
+    left:
+        105px;
 
-    background: #653a1d;
+    top:
+        -7px;
+
+    width:
+        160px;
+
+    height:
+        48px;
+
+    background:
+        #653a1d;
 
     clip-path:
         polygon(
@@ -402,35 +711,62 @@ nav a:hover {
             96% 100%,
             0 100%
         );
+
 }
+
 
 .eye {
-    position: absolute;
 
-    top: 67px;
+    position:
+        absolute;
 
-    width: 28px;
-    height: 12px;
+    top:
+        67px;
 
-    background: #111;
+    width:
+        28px;
+
+    height:
+        12px;
+
+    background:
+        #111;
+
 }
+
 
 .eye-left {
-    left: 32px;
+
+    left:
+        32px;
+
 }
+
 
 .eye-right {
-    right: 28px;
+
+    right:
+        28px;
+
 }
 
+
 .character-body {
-    position: absolute;
 
-    left: 65px;
-    top: 125px;
+    position:
+        absolute;
 
-    width: 245px;
-    height: 210px;
+    left:
+        65px;
+
+    top:
+        125px;
+
+    width:
+        245px;
+
+    height:
+        210px;
 
     background:
         linear-gradient(
@@ -440,150 +776,258 @@ nav a:hover {
             #087a88
         );
 
-    border: 11px solid #075d67;
+    border:
+        11px solid #075d67;
 
     box-shadow:
-        inset 0 0 0 13px rgba(255,255,255,.15),
-        inset 0 0 0 28px rgba(255,196,0,.42);
+
+        inset
+        0 0 0 13px
+        rgba(255,255,255,.15),
+
+        inset
+        0 0 0 28px
+        rgba(255,196,0,.42);
+
 }
+
 
 .leg {
-    position: absolute;
 
-    top: 325px;
+    position:
+        absolute;
 
-    width: 92px;
-    height: 150px;
+    top:
+        325px;
 
-    background: #09a5b4;
+    width:
+        92px;
 
-    border: 10px solid #075d67;
+    height:
+        150px;
+
+    background:
+        #09a5b4;
+
+    border:
+        10px solid #075d67;
+
 }
+
 
 .leg-left {
-    left: 75px;
 
-    transform: rotate(5deg);
+    left:
+        75px;
+
+    transform:
+        rotate(5deg);
+
 }
+
 
 .leg-right {
-    right: 72px;
 
-    transform: rotate(-5deg);
+    right:
+        72px;
+
+    transform:
+        rotate(-5deg);
+
 }
+
 
 .sword {
-    position: absolute;
 
-    width: 25px;
-    height: 250px;
+    position:
+        absolute;
 
-    background: #65f2ff;
+    width:
+        25px;
 
-    right: -5px;
-    top: 125px;
+    height:
+        250px;
 
-    transform: rotate(38deg);
+    background:
+        #65f2ff;
+
+    right:
+        -5px;
+
+    top:
+        125px;
+
+    transform:
+        rotate(38deg);
 
     box-shadow:
-        0 0 20px #24eaff;
+        0 0 20px
+        #24eaff;
+
 }
+
 
 .sword::after {
+
     content: "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    width: 85px;
-    height: 18px;
+    width:
+        85px;
 
-    background: #7a421e;
+    height:
+        18px;
 
-    left: -30px;
-    bottom: 8px;
+    background:
+        #7a421e;
+
+    left:
+        -30px;
+
+    bottom:
+        8px;
+
 }
 
-/* Dragon */
+
+/* Дракон */
 
 .dragon {
-    position: absolute;
 
-    right: -5%;
-    top: 5%;
+    position:
+        absolute;
 
-    font-size: 145px;
+    right:
+        -5%;
+
+    top:
+        5%;
+
+    font-size:
+        145px;
 
     filter:
         drop-shadow(
-            0 0 20px #8b00ff
+            0 0 20px
+            #8b00ff
         );
 
-    transform: rotate(-8deg);
+    transform:
+        rotate(-8deg);
 
-    opacity: .85;
+    opacity:
+        .85;
+
 }
 
-/* ===== SECTIONS ===== */
+
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 .section {
-    max-width: 1250px;
 
-    margin: auto;
+    max-width:
+        1250px;
 
-    padding: 90px 25px;
+    margin:
+        auto;
+
+    padding:
+        90px 25px;
+
 }
+
 
 .section-title {
-    text-align: center;
 
-    margin-bottom: 45px;
+    text-align:
+        center;
+
+    margin-bottom:
+        45px;
+
 }
+
 
 .section-title small {
-    color: var(--gold);
 
-    font-size: 12px;
+    color:
+        var(--gold);
 
-    font-weight: 900;
+    font-size:
+        12px;
 
-    text-transform: uppercase;
+    font-weight:
+        900;
 
-    letter-spacing: 2px;
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        2px;
+
 }
+
 
 .section-title h2 {
-    font-size: 42px;
 
-    margin-top: 8px;
+    font-size:
+        42px;
 
-    font-weight: 900;
+    margin-top:
+        8px;
+
+    font-weight:
+        900;
+
 }
+
 
 .section-title p {
-    color: #888;
 
-    margin-top: 10px;
+    color:
+        #888;
+
+    margin-top:
+        10px;
+
 }
 
-/* ===== PRODUCTS ===== */
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
 
 .products {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap: 24px;
+    gap:
+        24px;
+
 }
 
+
 .card {
-    position: relative;
 
-    overflow: hidden;
+    position:
+        relative;
 
-    padding: 25px;
+    overflow:
+        hidden;
 
-    border-radius: 14px;
+    padding:
+        25px;
+
+    border-radius:
+        14px;
 
     background:
         linear-gradient(
@@ -592,653 +1036,1327 @@ nav a:hover {
             rgba(5,6,7,.96)
         );
 
-    border: 1px solid
+    border:
+        1px solid
         rgba(255,196,0,.3);
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.35);
+        0 20px 60px
+        rgba(0,0,0,.35);
 
-    transition: .3s;
+    transition:
+        .3s;
+
 }
 
+
 .card:hover {
-    transform: translateY(-7px);
+
+    transform:
+        translateY(-7px);
 
     border-color:
         rgba(255,196,0,.7);
 
     box-shadow:
-        0 25px 80px rgba(255,196,0,.08);
+        0 25px 80px
+        rgba(255,196,0,.08);
+
 }
 
-.card-image {
-    height: 250px;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    margin-bottom: 22px;
-
-    background: #050505;
-
-    position: relative;
-}
-
-.card-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    transition: .4s;
-}
-
-.card:hover .card-image img {
-    transform: scale(1.04);
-}
 
 .card h3 {
-    font-size: 28px;
 
-    font-weight: 900;
+    font-size:
+        28px;
 
-    margin-bottom: 8px;
+    font-weight:
+        900;
+
+    margin-bottom:
+        8px;
+
 }
+
 
 .card-subtitle {
-    color: var(--gold);
 
-    font-size: 11px;
+    color:
+        var(--gold);
 
-    font-weight: 900;
+    font-size:
+        11px;
 
-    text-transform: uppercase;
+    font-weight:
+        900;
 
-    margin-bottom: 13px;
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        13px;
+
 }
+
 
 .card p {
-    color: #999;
 
-    line-height: 1.7;
+    color:
+        #999;
 
-    font-size: 13px;
+    line-height:
+        1.7;
+
+    font-size:
+        13px;
+
 }
 
-/* ===== ITEMS ===== */
+
+/* =========================================================
+   DIAMOND
+========================================================= */
+
+.diamond-box {
+
+    height:
+        250px;
+
+    border-radius:
+        10px;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(0,238,255,.30),
+            transparent 38%
+        ),
+
+        radial-gradient(
+            circle at 30% 20%,
+            rgba(0,180,255,.15),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #06151a,
+            #071015 50%,
+            #020506
+        );
+
+    border:
+        1px solid
+        rgba(0,220,255,.18);
+
+}
+
+
+.diamond {
+
+    font-size:
+        125px;
+
+    animation:
+        diamondFloat 3s
+        ease-in-out
+        infinite;
+
+    filter:
+
+        drop-shadow(
+            0 0 10px
+            #00eaff
+        )
+
+        drop-shadow(
+            0 0 30px
+            #00bfff
+        )
+
+        drop-shadow(
+            0 0 60px
+            rgba(0,220,255,.7)
+        );
+
+    transform:
+        rotate(-5deg);
+
+}
+
+
+.diamond-particles {
+
+    position:
+        absolute;
+
+    width:
+        100%;
+
+    top:
+        35px;
+
+    color:
+        #69f5ff;
+
+    font-size:
+        20px;
+
+    opacity:
+        .7;
+
+    animation:
+        particles 2.5s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes diamondFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            rotate(-5deg)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px)
+            rotate(5deg)
+            scale(1.08);
+
+    }
+
+}
+
+
+@keyframes particles {
+
+    0%,100% {
+
+        opacity:
+            .25;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    50% {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(-10px);
+
+    }
+
+}
+
+
+/* =========================================================
+   ITEMS
+========================================================= */
 
 .items {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap: 8px;
+    gap:
+        8px;
 
-    margin-top: 20px;
+    margin-top:
+        20px;
+
 }
+
 
 .item {
-    padding: 10px;
 
-    background: #101213;
-
-    border-radius: 7px;
-
-    color: #ccc;
-
-    font-size: 11px;
-
-    font-weight: 700;
-}
-
-.buy {
-    width: 100%;
-
-    margin-top: 22px;
-}
-
-/* ===== CURRENCY ===== */
-
-.currency-image {
-    height: 250px;
-
-    border-radius: 10px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
+    padding:
+        10px;
 
     background:
+        #101213;
+
+    border-radius:
+        7px;
+
+    color:
+        #ccc;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+}
+
+
+/* =========================================================
+   CURRENCY
+========================================================= */
+
+.currency-image {
+
+    height:
+        250px;
+
+    border-radius:
+        10px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+
         radial-gradient(
             circle,
             rgba(255,216,61,.4),
             transparent 45%
         ),
+
         linear-gradient(
             135deg,
             #211600,
             #080808
         );
+
 }
 
+
 .coin {
-    font-size: 110px;
+
+    font-size:
+        110px;
 
     filter:
         drop-shadow(
             0 0 25px
             rgba(255,196,0,.6)
         );
+
 }
 
-/* ===== FEATURES ===== */
+
+/* =========================================================
+   BUY BUTTON
+========================================================= */
+
+.buy {
+
+    width:
+        100%;
+
+    margin-top:
+        22px;
+
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
 
 .features {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
-    gap: 15px;
+    gap:
+        15px;
+
 }
+
 
 .feature {
-    padding: 25px 20px;
 
-    text-align: left;
+    padding:
+        25px 20px;
 
-    border: 1px solid #282a2c;
+    text-align:
+        left;
 
-    border-radius: 10px;
+    border:
+        1px solid
+        #282a2c;
 
-    background: #0b0d0e;
-
-    transition: .25s;
-}
-
-.feature:hover {
-    border-color: rgba(255,196,0,.45);
-
-    transform: translateY(-5px);
-}
-
-.feature-icon {
-    font-size: 30px;
-
-    margin-bottom: 14px;
-}
-
-.feature h3 {
-    font-size: 17px;
-
-    margin-bottom: 7px;
-}
-
-.feature p {
-    font-size: 11px;
-
-    color: #888;
-
-    line-height: 1.6;
-}
-
-/* ===== CTA ===== */
-
-.cta {
-    margin-top: 30px;
-
-    padding: 70px 25px;
-
-    text-align: center;
-
-    border: 1px solid
-        rgba(255,196,0,.3);
-
-    border-radius: 15px;
+    border-radius:
+        10px;
 
     background:
+        #0b0d0e;
+
+    transition:
+        .25s;
+
+}
+
+
+.feature:hover {
+
+    border-color:
+        rgba(255,196,0,.45);
+
+    transform:
+        translateY(-5px);
+
+}
+
+
+.feature-icon {
+
+    font-size:
+        30px;
+
+    margin-bottom:
+        14px;
+
+}
+
+
+.feature h3 {
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        7px;
+
+}
+
+
+.feature p {
+
+    font-size:
+        11px;
+
+    color:
+        #888;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+
+    margin-top:
+        30px;
+
+    padding:
+        70px 25px;
+
+    text-align:
+        center;
+
+    border:
+        1px solid
+        rgba(255,196,0,.3);
+
+    border-radius:
+        15px;
+
+    background:
+
         linear-gradient(
             90deg,
             rgba(88,0,130,.22),
             rgba(255,196,0,.09),
             rgba(0,88,65,.2)
         );
+
 }
+
 
 .cta h2 {
-    font-size: 42px;
 
-    font-weight: 900;
+    font-size:
+        42px;
+
+    font-weight:
+        900;
+
 }
+
 
 .cta p {
-    color: #999;
 
-    margin: 12px auto 25px;
+    color:
+        #999;
+
+    margin:
+        12px auto 25px;
+
 }
 
-/* ===== FOOTER ===== */
+
+/* =========================================================
+   DISCORD BLOCK
+========================================================= */
+
+.discord-box {
+
+    margin-top:
+        45px;
+
+    padding:
+        25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    background:
+        rgba(88,101,242,.08);
+
+    border:
+        1px solid
+        rgba(88,101,242,.35);
+
+    border-radius:
+        12px;
+
+}
+
+
+.discord-box h3 {
+
+    font-size:
+        18px;
+
+}
+
+
+.discord-box p {
+
+    color:
+        #888;
+
+    font-size:
+        12px;
+
+    margin-top:
+        5px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
-    border-top: 1px solid #1e2021;
 
-    padding: 35px 24px;
+    border-top:
+        1px solid
+        #1e2021;
 
-    color: #777;
+    padding:
+        35px 24px;
 
-    text-align: center;
+    color:
+        #777;
 
-    font-size: 11px;
+    text-align:
+        center;
+
+    font-size:
+        11px;
+
 }
+
 
 footer b {
-    color: var(--gold);
+
+    color:
+        var(--gold);
+
 }
 
-/* ===== MOBILE ===== */
 
-@media(max-width: 850px) {
+.footer-discord {
+
+    display:
+        inline-block;
+
+    margin-top:
+        15px;
+
+    color:
+        #7289da;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        900;
+
+}
+
+
+.footer-discord:hover {
+
+    color:
+        #9aa3ff;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px) {
 
     nav {
-        display: none;
+
+        display:
+            none;
+
     }
+
 
     .hero-content {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
+
 
     .hero {
-        padding-top: 125px;
+
+        padding-top:
+            125px;
+
     }
+
 
     .hero-art {
-        min-height: 430px;
+
+        min-height:
+            430px;
+
     }
 
+
     .character {
+
         transform:
             scale(.8)
             rotate(-3deg);
 
-        right: 0;
+        right:
+            0;
+
     }
+
 
     .dragon {
-        font-size: 90px;
+
+        font-size:
+            90px;
+
     }
+
 
     .badges {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
+
 
     .products {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
 
+
     .features {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
+
 
     .section-title h2,
     .cta h2 {
-        font-size: 32px;
+
+        font-size:
+            32px;
+
     }
+
 
     .hero h1 {
-        letter-spacing: -2px;
+
+        letter-spacing:
+            -2px;
+
     }
+
+
+    .discord-box {
+
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+
+    }
+
 }
 
+
 </style>
+
 </head>
 
 
 <body>
 
-<!-- HEADER -->
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
 <div class="navbar">
 
+
     <div class="logo">
+
         👑 Dani<span>SMP</span>
+
     </div>
 
+
     <nav>
-        <a href="#home">ГЛАВНАЯ</a>
-        <a href="#shop">МАГАЗИН</a>
-        <a href="#advantages">ПРЕИМУЩЕСТВА</a>
+
+        <a href="#home">
+            ГЛАВНАЯ
+        </a>
+
+        <a href="#shop">
+            МАГАЗИН
+        </a>
+
+        <a href="#advantages">
+            ПРЕИМУЩЕСТВА
+        </a>
+
+        <a
+            href="https://discord.gg/MmNg4YNSu"
+            target="_blank"
+        >
+            DISCORD
+        </a>
+
     </nav>
+
 
     <a
         class="btn btn-gold"
+
         href="https://funpay.com/lots/offer?id=78168600"
+
         target="_blank"
     >
+
         КУПИТЬ СЕТ
+
     </a>
+
 
 </div>
 
 </header>
 
 
-<!-- HERO -->
 
-<section class="hero" id="home">
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="home"
+>
+
 
 <div class="hero-content">
 
+
 <div>
 
+
     <div class="kicker">
+
         🛡 Официальный магазин DaniSMP
+
     </div>
 
+
     <h1>
+
         СТАНЬ<br>
+
         <span>ЛЕГЕНДОЙ</span><br>
+
         НА DANISMP
+
     </h1>
 
+
     <p class="hero-text">
-        Прокачивайся с мощным снаряжением,
-        ресурсами и игровой валютой.
-        Забирай готовый Daniosha Set
-        и отправляйся покорять сервер.
+
+        Прокачивайся с мощным
+        снаряжением, ресурсами
+        и игровой валютой.
+
+        Забирай готовый
+        Daniosha Set и отправляйся
+        покорять сервер.
+
     </p>
 
 
     <div class="buttons">
 
+
         <a
             class="btn btn-gold"
+
             href="https://funpay.com/lots/offer?id=78168600"
+
             target="_blank"
         >
+
             ⚔ КУПИТЬ DANIOSHA SET →
+
         </a>
+
 
         <a
             class="btn btn-dark"
+
             href="https://funpay.com/lots/offer?id=78167287"
+
             target="_blank"
         >
+
             🪙 КУПИТЬ ВАЛЮТУ
+
         </a>
 
+
+        <a
+            class="btn btn-discord"
+
+            href="https://discord.gg/MmNg4YNSu"
+
+            target="_blank"
+        >
+
+            💬 DISCORD
+
+        </a>
+
+
     </div>
+
 
 
     <div class="badges">
 
+
         <div class="badge">
-            <b>⚡ БЫСТРО</b>
+
+            <b>
+                ⚡ БЫСТРО
+            </b>
+
             Моментальная покупка
+
         </div>
 
+
         <div class="badge">
-            <b>🛡 БЕЗОПАСНО</b>
+
+            <b>
+                🛡 БЕЗОПАСНО
+            </b>
+
             Покупка через FunPay
+
         </div>
 
+
         <div class="badge">
-            <b>👑 ВЫГОДНО</b>
+
+            <b>
+                👑 ВЫГОДНО
+            </b>
+
             Готовые наборы
+
         </div>
+
 
     </div>
+
 
 </div>
 
 
-<!-- MINECRAFT CHARACTER -->
+
+<!-- MINECRAFT ART -->
 
 <div class="hero-art">
 
+
     <div class="dragon">
+
         🐉
+
     </div>
 
+
     <div class="character">
+
 
         <div class="character-head">
 
             <div class="eye eye-left"></div>
+
             <div class="eye eye-right"></div>
 
         </div>
 
+
         <div class="character-hair"></div>
+
 
         <div class="character-body"></div>
 
+
         <div class="leg leg-left"></div>
+
         <div class="leg leg-right"></div>
+
 
         <div class="sword"></div>
 
+
     </div>
 
+
 </div>
+
 
 </div>
 
 </section>
 
 
-<!-- SHOP -->
+
+<!-- =====================================================
+     SHOP
+===================================================== -->
 
 <section
     class="section"
     id="shop"
 >
 
+
 <div class="section-title">
 
+
     <small>
+
         ✦ НАШИ ТОВАРЫ ✦
+
     </small>
 
+
     <h2>
+
         ВЫБЕРИ ЛУЧШЕЕ
+
     </h2>
 
+
     <p>
-        Всё необходимое для уверенного
-        старта на DaniSMP
+
+        Всё необходимое для
+        уверенного старта на DaniSMP
+
     </p>
+
 
 </div>
 
 
+
 <div class="products">
+
 
 
 <!-- DANIOSHA SET -->
 
 <article class="card">
 
-    <div class="card-image">
 
-        <img
-            src="daniosha-set.png"
-            alt="Daniosha Set"
-        >
+    <!-- АЛМАЗ -->
+
+    <div class="diamond-box">
+
+
+        <div class="diamond">
+
+            💎
+
+        </div>
+
+
+        <div class="diamond-particles">
+
+            ✦　·　✧　　✦　·　✧
+
+        </div>
+
 
     </div>
+
 
 
     <div class="card-subtitle">
+
         👑 ТОПОВЫЙ НАБОР
+
     </div>
 
+
     <h3>
+
         DANIOSHA ARMOR SET
+
     </h3>
 
+
     <p>
+
         Готовый комплект для игрока,
         который хочет быстро получить
         мощное снаряжение и ресурсы
         без долгого фарма.
+
+        Забирай всё необходимое
+        для уверенной игры на сервере.
+
     </p>
+
 
 
     <div class="items">
 
+
         <div class="item">
+
             💎 Алмазная броня
+
         </div>
 
+
         <div class="item">
+
             ⚒ Незеритовые инструменты
+
         </div>
 
+
         <div class="item">
+
             🍎 Золотые яблоки ×64
+
         </div>
 
+
         <div class="item">
+
             💨 Бризовые заряды ×32
+
         </div>
 
+
         <div class="item">
+
             🧪 Взрывные зелья ×32
+
         </div>
 
+
         <div class="item">
+
             ✨ Зелья опыта ×64
+
         </div>
 
+
         <div class="item">
+
             💎 Алмазы ×32
+
         </div>
 
+
         <div class="item">
+
             🏆 Armor Trims
+
         </div>
+
 
     </div>
+
 
 
     <a
         class="btn btn-gold buy"
+
         href="https://funpay.com/lots/offer?id=78168600"
+
         target="_blank"
     >
+
         💎 КУПИТЬ DANIOSHA SET
+
     </a>
+
 
 </article>
 
 
-<!-- CURRENCY -->
+
+<!-- =====================================================
+     CURRENCY
+===================================================== -->
 
 <article class="card">
 
+
     <div class="currency-image">
 
+
         <div class="coin">
+
             🪙
+
         </div>
 
+
     </div>
+
 
 
     <div
         class="card-subtitle"
         style="margin-top:22px"
     >
+
         💰 ДЛЯ РАЗВИТИЯ
+
     </div>
 
 
     <h3>
+
         ИГРОВАЯ ВАЛЮТА
+
     </h3>
 
 
     <p>
+
         Пополняй баланс и покупай
         то, что нужно для развития
-        персонажа. Удобный вариант
-        для игроков, которые хотят
-        быстрее двигаться вперёд.
+        персонажа.
+
+        Удобный вариант для игроков,
+        которые хотят быстрее
+        двигаться вперёд.
+
     </p>
+
 
 
     <div class="items">
 
+
         <div class="item">
+
             🪙 Игровая валюта
+
         </div>
 
+
         <div class="item">
+
             ⚡ Быстрое получение
+
         </div>
 
+
         <div class="item">
+
             🛒 Для любых покупок
+
         </div>
 
+
         <div class="item">
+
             🎮 Для развития
+
         </div>
 
+
         <div class="item">
+
             🔒 Покупка через FunPay
+
         </div>
 
+
         <div class="item">
+
             💬 Поддержка игроков
+
         </div>
+
 
     </div>
 
 
+
     <a
         class="btn btn-gold buy"
+
         href="https://funpay.com/lots/offer?id=78167287"
+
         target="_blank"
     >
+
         🪙 КУПИТЬ ВАЛЮТУ
+
     </a>
 
+
 </article>
+
 
 </div>
 
 </section>
 
 
-<!-- ADVANTAGES -->
+
+<!-- =====================================================
+     ADVANTAGES
+===================================================== -->
 
 <section
     class="section"
     id="advantages"
 >
 
+
 <div class="section-title">
 
+
     <small>
+
         ✦ ПОЧЕМУ DANISMP? ✦
+
     </small>
 
+
     <h2>
-        ДЛЯ ТЕХ, КТО ХОЧЕТ ИГРАТЬ
+
+        ДЛЯ ТЕХ,
+        КТО ХОЧЕТ ИГРАТЬ
+
     </h2>
+
 
 </div>
 
 
+
 <div class="features">
+
 
     <div class="feature">
 
@@ -1251,11 +2369,15 @@ footer b {
         </h3>
 
         <p>
-            Выбираешь товар и переходишь
-            к покупке без лишних действий.
+
+            Выбираешь товар
+            и переходишь к покупке
+            без лишних действий.
+
         </p>
 
     </div>
+
 
 
     <div class="feature">
@@ -1269,10 +2391,14 @@ footer b {
         </h3>
 
         <p>
-            Покупка проходит через FunPay.
+
+            Покупка проходит
+            через FunPay.
+
         </p>
 
     </div>
+
 
 
     <div class="feature">
@@ -1286,11 +2412,15 @@ footer b {
         </h3>
 
         <p>
-            Daniosha Set объединяет броню,
-            инструменты и полезные ресурсы.
+
+            Daniosha Set объединяет
+            броню, инструменты
+            и полезные ресурсы.
+
         </p>
 
     </div>
+
 
 
     <div class="feature">
@@ -1304,27 +2434,42 @@ footer b {
         </h3>
 
         <p>
+
             Если появились вопросы,
-            свяжись с продавцом на FunPay.
+            свяжись с продавцом
+            на FunPay.
+
         </p>
 
     </div>
 
+
 </div>
 
 
-<!-- CTA -->
+
+<!-- =====================================================
+     CTA
+===================================================== -->
 
 <div class="cta">
 
+
     <h2>
-        ГОТОВ СТАТЬ ЛУЧШИМ?
+
+        ГОТОВ
+        СТАТЬ ЛУЧШИМ?
+
     </h2>
 
+
     <p>
+
         Выбирай товар и отправляйся
         покорять DaniSMP уже сегодня.
+
     </p>
+
 
 
     <div
@@ -1332,38 +2477,140 @@ footer b {
         style="justify-content:center"
     >
 
+
         <a
             class="btn btn-gold"
+
             href="https://funpay.com/lots/offer?id=78168600"
+
             target="_blank"
         >
+
             💎 КУПИТЬ DANIOSHA SET
+
         </a>
 
 
         <a
             class="btn btn-dark"
+
             href="https://funpay.com/lots/offer?id=78167287"
+
             target="_blank"
         >
+
             🪙 КУПИТЬ ВАЛЮТУ
+
         </a>
+
+
+        <a
+            class="btn btn-discord"
+
+            href="https://discord.gg/MmNg4YNSu"
+
+            target="_blank"
+        >
+
+            💬 ЗАЙТИ В DISCORD
+
+        </a>
+
 
     </div>
 
+
 </div>
+
+
+
+<!-- =====================================================
+     DISCORD
+===================================================== -->
+
+<div class="discord-box">
+
+
+    <div>
+
+        <h3>
+
+            💬 Присоединяйся
+            к сообществу DaniSMP
+
+        </h3>
+
+
+        <p>
+
+            Общайся с игроками,
+            следи за новостями
+            и не пропускай обновления.
+
+        </p>
+
+    </div>
+
+
+    <a
+        class="btn btn-discord"
+
+        href="https://discord.gg/MmNg4YNSu"
+
+        target="_blank"
+    >
+
+        💬 ВОЙТИ В DISCORD
+
+    </a>
+
+
+</div>
+
 
 </section>
 
 
-<!-- FOOTER -->
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
-    👑 <b>DaniSMP</b> Store · 2026 · Все права защищены
+
+    👑
+
+    <b>
+        DaniSMP
+    </b>
+
+    Store
+
+    · 2026
+
+    · Все права защищены
+
+
+    <br>
+
+
+    <a
+        class="footer-discord"
+
+        href="https://discord.gg/MmNg4YNSu"
+
+        target="_blank"
+    >
+
+        💬 DISCORD — ПРИСОЕДИНИТЬСЯ К НАМ
+
+    </a>
+
 
 </footer>
 
 
 </body>
+
 </html>
